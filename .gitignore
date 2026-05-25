@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
+
+# Tooling
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Copyrighted scores - do not commit
+tests/fixtures/*.musicxml
+tests/fixtures/*.mxl
+examples/**/*.musicxml
+examples/**/*.mxl
+!tests/fixtures/.gitkeep
+
+# Generated outputs
+examples/**/output/
+*.pdf
+*.mid
+*.midi
+
+# OS
+.DS_Store

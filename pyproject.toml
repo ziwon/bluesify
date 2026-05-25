@@ -1,0 +1,61 @@
+[project]
+name = "bluesify"
+version = "0.1.0"
+description = "Step-by-step jazz/blues arrangement engine for self-learning"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+authors = [{ name = "Aaron" }]
+dependencies = [
+    "music21>=9.1",
+    "click>=8.1",
+    "pydantic>=2.6",
+    "rich>=13.7",
+]
+
+[project.optional-dependencies]
+render = [
+    "verovio>=4.3",  # PDF/SVG rendering
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.0",
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.4",
+    "mypy>=1.10",
+]
+
+[project.scripts]
+bluesify = "bluesify.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bluesify"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "SIM", "RUF"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+disable_error_code = ["no-untyped-call"]
+warn_return_any = true
+warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+module = "music21.*"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
