@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+  <title id="title">Diatonic 7ths reharmonization rule</title>
+  <desc id="desc">C, F, G, C becomes C△, F△, G7, C△.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .panel { fill: #fff; stroke: #cbd5e1; stroke-width: 2; }
+      .title { fill: #0f172a; font-family: DejaVu Sans; font-size: 30px; font-weight: 700; }
+      .subtitle, .note { fill: #334155; font-family: DejaVu Sans; font-size: 16px; }
+      .label { fill: #334155; font-family: DejaVu Sans; font-size: 14px; font-weight: 700; letter-spacing: .08em; }
+      .chord { fill: #111827; font-family: DejaVu Sans; font-size: 23px; font-weight: 700; }
+      .roman { fill: #64748b; font-family: DejaVu Sans; font-size: 14px; }
+      .box-in { fill: #e0f2fe; stroke: #0284c7; stroke-width: 2; }
+      .box-out { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; }
+      .arrow { stroke: #475569; stroke-width: 2; marker-end: url(#arrowhead); }
+      .rule { fill: #fef3c7; stroke: #d97706; stroke-width: 2; }
+    </style>
+    <marker id="arrowhead" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="960" height="360"/>
+  <text class="title" x="48" y="52">diatonic_7ths.py</text>
+  <text class="subtitle" x="48" y="78">Enrich plain diatonic triads by adding the in-key seventh.</text>
+
+  <rect class="panel" x="48" y="105" width="864" height="200" rx="8"/>
+  <text class="label" x="78" y="145">INPUT</text>
+  <text class="label" x="78" y="250">OUTPUT</text>
+
+  <g transform="translate(180 0)">
+    <rect class="box-in" x="0" y="122" width="110" height="56" rx="7"/>
+    <text class="chord" x="55" y="157" text-anchor="middle">C</text>
+    <text class="roman" x="55" y="198" text-anchor="middle">I</text>
+    <line class="arrow" x1="55" y1="185" x2="55" y2="214"/>
+    <rect class="box-out" x="0" y="220" width="110" height="56" rx="7"/>
+    <text class="chord" x="55" y="255" text-anchor="middle">C△</text>
+    <text class="roman" x="55" y="295" text-anchor="middle">I△</text>
+  </g>
+  <g transform="translate(340 0)">
+    <rect class="box-in" x="0" y="122" width="110" height="56" rx="7"/>
+    <text class="chord" x="55" y="157" text-anchor="middle">F</text>
+    <text class="roman" x="55" y="198" text-anchor="middle">IV</text>
+    <line class="arrow" x1="55" y1="185" x2="55" y2="214"/>
+    <rect class="box-out" x="0" y="220" width="110" height="56" rx="7"/>
+    <text class="chord" x="55" y="255" text-anchor="middle">F△</text>
+    <text class="roman" x="55" y="295" text-anchor="middle">IV△</text>
+  </g>
+  <g transform="translate(500 0)">
+    <rect class="box-in" x="0" y="122" width="110" height="56" rx="7"/>
+    <text class="chord" x="55" y="157" text-anchor="middle">G</text>
+    <text class="roman" x="55" y="198" text-anchor="middle">V</text>
+    <line class="arrow" x1="55" y1="185" x2="55" y2="214"/>
+    <rect class="box-out" x="0" y="220" width="110" height="56" rx="7"/>
+    <text class="chord" x="55" y="255" text-anchor="middle">G7</text>
+    <text class="roman" x="55" y="295" text-anchor="middle">V7</text>
+  </g>
+  <g transform="translate(660 0)">
+    <rect class="box-in" x="0" y="122" width="110" height="56" rx="7"/>
+    <text class="chord" x="55" y="157" text-anchor="middle">C</text>
+    <text class="roman" x="55" y="198" text-anchor="middle">I</text>
+    <line class="arrow" x1="55" y1="185" x2="55" y2="214"/>
+    <rect class="box-out" x="0" y="220" width="110" height="56" rx="7"/>
+    <text class="chord" x="55" y="255" text-anchor="middle">C△</text>
+    <text class="roman" x="55" y="295" text-anchor="middle">I△</text>
+  </g>
+
+  <rect class="rule" x="48" y="320" width="864" height="28" rx="6"/>
+  <text class="note" x="70" y="339">Rule: preserve function, add color tones from the key. This is the safest first jazz layer.</text>
+</svg>

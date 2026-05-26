@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+  <title id="title">Blues conversion reharmonization rule</title>
+  <desc id="desc">C, F, G becomes C7, F7, G7 with blues color tones.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .panel { fill: #fff; stroke: #cbd5e1; stroke-width: 2; }
+      .title { fill: #0f172a; font-family: DejaVu Sans; font-size: 30px; font-weight: 700; }
+      .subtitle, .note { fill: #334155; font-family: DejaVu Sans; font-size: 16px; }
+      .label { fill: #334155; font-family: DejaVu Sans; font-size: 14px; font-weight: 700; letter-spacing: .08em; }
+      .chord { fill: #111827; font-family: DejaVu Sans; font-size: 22px; font-weight: 700; }
+      .roman { fill: #64748b; font-family: DejaVu Sans; font-size: 13px; }
+      .box-in { fill: #e0f2fe; stroke: #0284c7; stroke-width: 2; }
+      .blue { fill: #dbeafe; stroke: #2563eb; stroke-width: 2; }
+      .box-out { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; }
+      .arrow { stroke: #475569; stroke-width: 2; marker-end: url(#arrowhead); }
+      .scale { stroke: #2563eb; stroke-width: 2.5; fill: none; }
+      .dot { fill: #2563eb; }
+      .rule { fill: #fef3c7; stroke: #d97706; stroke-width: 2; }
+    </style>
+    <marker id="arrowhead" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="960" height="360"/>
+  <text class="title" x="48" y="52">blues_conversion.py</text>
+  <text class="subtitle" x="48" y="78">Turn a simple I-IV-V progression into dominant blues harmony.</text>
+
+  <rect class="panel" x="48" y="105" width="864" height="200" rx="8"/>
+  <text class="label" x="78" y="145">INPUT</text>
+  <text class="label" x="78" y="250">OUTPUT</text>
+
+  <rect class="box-in" x="225" y="122" width="118" height="54" rx="7"/>
+  <rect class="box-in" x="421" y="122" width="118" height="54" rx="7"/>
+  <rect class="box-in" x="617" y="122" width="118" height="54" rx="7"/>
+  <text class="chord" x="284" y="156" text-anchor="middle">C</text>
+  <text class="roman" x="284" y="194" text-anchor="middle">I</text>
+  <text class="chord" x="480" y="156" text-anchor="middle">F</text>
+  <text class="roman" x="480" y="194" text-anchor="middle">IV</text>
+  <text class="chord" x="676" y="156" text-anchor="middle">G</text>
+  <text class="roman" x="676" y="194" text-anchor="middle">V</text>
+  <line class="arrow" x1="480" y1="201" x2="480" y2="223"/>
+
+  <path class="scale" d="M205 214 C275 194, 348 224, 420 204 S575 194, 650 216"/>
+  <circle class="dot" cx="280" cy="204" r="4"/>
+  <circle class="dot" cx="420" cy="204" r="4"/>
+  <circle class="dot" cx="560" cy="201" r="4"/>
+  <text class="note" x="430" y="196" text-anchor="middle">blue notes: b3, b5, b7</text>
+
+  <rect class="blue" x="175" y="228" width="112" height="54" rx="7"/>
+  <rect class="blue" x="370" y="228" width="112" height="54" rx="7"/>
+  <rect class="blue" x="565" y="228" width="112" height="54" rx="7"/>
+  <rect class="box-out" x="725" y="228" width="90" height="54" rx="7"/>
+  <text class="chord" x="231" y="262" text-anchor="middle">C7</text>
+  <text class="chord" x="426" y="262" text-anchor="middle">F7</text>
+  <text class="chord" x="621" y="262" text-anchor="middle">G7</text>
+  <text class="chord" x="770" y="262" text-anchor="middle">C7</text>
+  <text class="roman" x="231" y="302" text-anchor="middle">I7</text>
+  <text class="roman" x="426" y="302" text-anchor="middle">IV7</text>
+  <text class="roman" x="621" y="302" text-anchor="middle">V7</text>
+
+  <rect class="rule" x="48" y="320" width="864" height="28" rx="6"/>
+  <text class="note" x="70" y="339">Rule: make I, IV, and V dominant 7ths, then allow blues-scale melody color above them.</text>
+</svg>

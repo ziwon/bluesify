@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="370" viewBox="0 0 960 370" role="img" aria-labelledby="title desc">
+  <title id="title">ii-V insertion reharmonization rule</title>
+  <desc id="desc">A direct move to C△ is expanded into D_7, G7, C△.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .panel { fill: #fff; stroke: #cbd5e1; stroke-width: 2; }
+      .title { fill: #0f172a; font-family: DejaVu Sans; font-size: 30px; font-weight: 700; }
+      .subtitle, .note { fill: #334155; font-family: DejaVu Sans; font-size: 16px; }
+      .label { fill: #334155; font-family: DejaVu Sans; font-size: 14px; font-weight: 700; letter-spacing: .08em; }
+      .chord { fill: #111827; font-family: DejaVu Sans; font-size: 22px; font-weight: 700; }
+      .roman { fill: #64748b; font-family: DejaVu Sans; font-size: 13px; }
+      .box-in { fill: #e0f2fe; stroke: #0284c7; stroke-width: 2; }
+      .box-out { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; }
+      .insert { fill: #fce7f3; stroke: #db2777; stroke-width: 2; }
+      .arrow { stroke: #475569; stroke-width: 2; marker-end: url(#arrowhead); }
+      .phrase { stroke: #16a34a; stroke-width: 2.5; fill: none; marker-end: url(#greenhead); }
+      .rule { fill: #fef3c7; stroke: #d97706; stroke-width: 2; }
+    </style>
+    <marker id="arrowhead" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#475569"/>
+    </marker>
+    <marker id="greenhead" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#16a34a"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="960" height="370"/>
+  <text class="title" x="48" y="52">ii_v_insertion.py</text>
+  <text class="subtitle" x="48" y="78">Expand a target chord by inserting its local predominant and dominant.</text>
+
+  <rect class="panel" x="48" y="105" width="864" height="210" rx="8"/>
+  <text class="label" x="78" y="145">INPUT</text>
+  <text class="label" x="78" y="252">OUTPUT</text>
+
+  <rect class="box-in" x="260" y="122" width="118" height="54" rx="7"/>
+  <rect class="box-in" x="582" y="122" width="118" height="54" rx="7"/>
+  <text class="chord" x="319" y="156" text-anchor="middle">A_7</text>
+  <text class="roman" x="319" y="194" text-anchor="middle">vi_7</text>
+  <text class="chord" x="641" y="156" text-anchor="middle">C△</text>
+  <text class="roman" x="641" y="194" text-anchor="middle">target: I△</text>
+  <line class="arrow" x1="395" y1="149" x2="560" y2="149"/>
+  <line class="arrow" x1="480" y1="201" x2="480" y2="223"/>
+
+  <path class="phrase" d="M374 222 C405 205, 492 205, 525 222"/>
+  <path class="phrase" d="M528 222 C560 205, 646 205, 680 222"/>
+  <rect class="box-out" x="175" y="228" width="112" height="54" rx="7"/>
+  <rect class="insert" x="330" y="228" width="112" height="54" rx="7"/>
+  <rect class="insert" x="485" y="228" width="112" height="54" rx="7"/>
+  <rect class="box-out" x="640" y="228" width="112" height="54" rx="7"/>
+  <text class="chord" x="231" y="262" text-anchor="middle">A_7</text>
+  <text class="chord" x="386" y="262" text-anchor="middle">D_7</text>
+  <text class="chord" x="541" y="262" text-anchor="middle">G7</text>
+  <text class="chord" x="696" y="262" text-anchor="middle">C△</text>
+  <text class="roman" x="386" y="302" text-anchor="middle">ii_7</text>
+  <text class="roman" x="541" y="302" text-anchor="middle">V7</text>
+  <text class="roman" x="696" y="302" text-anchor="middle">I△</text>
+
+  <rect class="rule" x="48" y="330" width="864" height="28" rx="6"/>
+  <text class="note" x="70" y="349">Rule: when duration allows, approach a destination as ii-V-I in that destination key.</text>
+</svg>

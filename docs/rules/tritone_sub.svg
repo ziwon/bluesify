@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+  <title id="title">Tritone substitution reharmonization rule</title>
+  <desc id="desc">D_7, G7, C△ becomes D_7, Db7, C△.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .panel { fill: #fff; stroke: #cbd5e1; stroke-width: 2; }
+      .title { fill: #0f172a; font-family: DejaVu Sans; font-size: 30px; font-weight: 700; }
+      .subtitle, .note { fill: #334155; font-family: DejaVu Sans; font-size: 16px; }
+      .label { fill: #334155; font-family: DejaVu Sans; font-size: 14px; font-weight: 700; letter-spacing: .08em; }
+      .chord { fill: #111827; font-family: DejaVu Sans; font-size: 22px; font-weight: 700; }
+      .roman { fill: #64748b; font-family: DejaVu Sans; font-size: 13px; }
+      .box-in { fill: #e0f2fe; stroke: #0284c7; stroke-width: 2; }
+      .box-out { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; }
+      .sub { fill: #ffedd5; stroke: #ea580c; stroke-width: 2; }
+      .arrow { stroke: #475569; stroke-width: 2; marker-end: url(#arrowhead); }
+      .halfstep { stroke: #ea580c; stroke-width: 2.5; marker-end: url(#orangehead); }
+      .rule { fill: #fef3c7; stroke: #d97706; stroke-width: 2; }
+    </style>
+    <marker id="arrowhead" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#475569"/>
+    </marker>
+    <marker id="orangehead" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#ea580c"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="960" height="360"/>
+  <text class="title" x="48" y="52">tritone_sub.py</text>
+  <text class="subtitle" x="48" y="78">Replace V7 with the dominant a tritone away for chromatic bass motion.</text>
+
+  <rect class="panel" x="48" y="105" width="864" height="200" rx="8"/>
+  <text class="label" x="78" y="145">INPUT</text>
+  <text class="label" x="78" y="250">OUTPUT</text>
+
+  <rect class="box-in" x="235" y="122" width="118" height="54" rx="7"/>
+  <rect class="box-in" x="421" y="122" width="118" height="54" rx="7"/>
+  <rect class="box-in" x="607" y="122" width="118" height="54" rx="7"/>
+  <text class="chord" x="294" y="156" text-anchor="middle">D_7</text>
+  <text class="roman" x="294" y="194" text-anchor="middle">ii_7</text>
+  <text class="chord" x="480" y="156" text-anchor="middle">G7</text>
+  <text class="roman" x="480" y="194" text-anchor="middle">V7</text>
+  <text class="chord" x="666" y="156" text-anchor="middle">C△</text>
+  <text class="roman" x="666" y="194" text-anchor="middle">I△</text>
+  <line class="arrow" x1="480" y1="201" x2="480" y2="223"/>
+
+  <rect class="box-out" x="235" y="220" width="118" height="56" rx="7"/>
+  <rect class="sub" x="421" y="220" width="118" height="56" rx="7"/>
+  <rect class="box-out" x="607" y="220" width="118" height="56" rx="7"/>
+  <text class="chord" x="294" y="255" text-anchor="middle">D_7</text>
+  <text class="roman" x="294" y="295" text-anchor="middle">ii_7</text>
+  <text class="chord" x="480" y="255" text-anchor="middle">Db7</text>
+  <text class="roman" x="480" y="295" text-anchor="middle">subV7</text>
+  <text class="chord" x="666" y="255" text-anchor="middle">C△</text>
+  <text class="roman" x="666" y="295" text-anchor="middle">I△</text>
+  <text class="note" x="574" y="215" text-anchor="middle">Db -> C bass</text>
+  <line class="halfstep" x1="545" y1="248" x2="600" y2="248"/>
+
+  <rect class="rule" x="48" y="320" width="864" height="28" rx="6"/>
+  <text class="note" x="70" y="339">Rule: G7 and Db7 share guide-tone tension; the substitute resolves by half step to I.</text>
+</svg>
