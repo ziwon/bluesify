@@ -1,6 +1,6 @@
 # Case Studies
 
-Representative harmony and arrangement studies for Bluesify.
+Harmony and arrangement studies for Bluesify.
 
 These documents are intentionally melody-free and lyric-free. They focus on
 harmonic structure, arrangement decisions, and reproducible Bluesify commands.

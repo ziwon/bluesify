@@ -11,11 +11,11 @@ for Bluesify's jazz-ballad and reharmonization workflows.
 
 ![Harmony map](../assets/geudaeman-itdamyeon-harmony-map.svg)
 
-## Representative Example
+## Case Study Input
 
 Tracked harmony-only input:
 
-- [examples/representative/geudaeman-itdamyeon-c-harmony.musicxml](../../examples/representative/geudaeman-itdamyeon-c-harmony.musicxml)
+- [examples/case_studies/geudaeman-itdamyeon-c-harmony.musicxml](../../examples/case_studies/geudaeman-itdamyeon-c-harmony.musicxml)
 
 Current Level 5 jazz-ballad preview:
 
@@ -29,6 +29,12 @@ outputs remain under `examples/output/`, which is intentionally ignored by git.
 
 Do not commit copyrighted source MusicXML, melody transcriptions, lyrics, or
 large generated output directories without redistribution rights.
+
+## Source Links
+
+- Official artist page: <https://julianlerner.com/>
+- Official music video: <https://www.youtube.com/watch?v=orbICj89nJk>
+- Spotify track page: <https://open.spotify.com/track/6HhQU8qouMcn0qDKSt8Vfr>
 
 ## Form and Progression
 

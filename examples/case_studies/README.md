@@ -1,6 +1,6 @@
-# Representative Example: Geudaeman Itdamyeon Harmony Study
+# Case Study Input: Geudaeman Itdamyeon Harmony Study
 
-This folder contains Bluesify's representative song-style example.
+This folder contains harmony-only MusicXML inputs used by Bluesify case studies.
 
 The example is intentionally **harmony-only**:
 
@@ -28,7 +28,7 @@ easier piano study. The important harmonic devices are preserved:
 ## Analyze
 
 ```bash
-uv run bluesify analyze examples/representative/geudaeman-itdamyeon-c-harmony.musicxml
+uv run bluesify analyze examples/case_studies/geudaeman-itdamyeon-c-harmony.musicxml
 ```
 
 Because the file is harmony-only, automatic key detection may infer a nearby key
@@ -37,11 +37,11 @@ from chord content. The chart is intended as a C-transposed study chart.
 ## Arrange
 
 ```bash
-uv run bluesify arrange examples/representative/geudaeman-itdamyeon-c-harmony.musicxml \
+uv run bluesify arrange examples/case_studies/geudaeman-itdamyeon-c-harmony.musicxml \
   --mode solo \
   --style jazz-ballad \
   --level 5 \
-  --out examples/output/representative
+  --out examples/output/case-studies
 ```
 
 Generated MusicXML, MIDI, annotations, and render files should stay under

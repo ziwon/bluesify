@@ -61,16 +61,15 @@ Generated files:
 - `*.svg` when `just sync-render` is installed and Verovio is available
 - `*.pdf` only when the installed Verovio Python binding supports PDF export
 
-## Representative Example
+## Case Studies
 
-Bluesify includes a harmony-only representative song example for jazz-ballad
-arrangement work:
+Bluesify includes harmony-only case studies for jazz-ballad arrangement work:
 
-- [Representative example input](examples/representative/README.md)
-- [Harmony and arrangement case study](docs/case_studies/geudaeman_itdamyeon.md)
+- [Case study inputs](examples/case_studies/README.md)
+- [Harmony and arrangement notes](docs/case_studies/README.md)
 
-It omits lyrics and melody transcription, but preserves the chord progression
-and functional harmonic devices needed for analysis and arrangement.
+They omit lyrics and melody transcription, but preserve chord progressions and
+functional harmonic devices needed for analysis and arrangement.
 
 ## Web UI
 
