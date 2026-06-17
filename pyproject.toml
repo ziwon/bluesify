@@ -17,6 +17,11 @@ dependencies = [
 render = [
     "verovio>=4.3",  # PDF/SVG rendering
 ]
+web = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "python-multipart>=0.0.9",  # multipart/form-data uploads
+]
 
 [dependency-groups]
 dev = [

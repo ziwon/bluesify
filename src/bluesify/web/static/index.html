@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0e0b09" />
+  <title>Bluesify · learn it like a jazz player</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="mark">♪</span>
+      <h1>Bluesify</h1>
+      <span class="tagline">step-by-step jazz piano</span>
+    </div>
+
+    <div class="transport" role="group" aria-label="Playback">
+      <button id="playBtn" class="play" aria-label="Play" disabled>
+        <svg class="ic-play" viewBox="0 0 24 24" width="22" height="22"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="ic-pause" viewBox="0 0 24 24" width="22" height="22"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      </button>
+      <div class="tempo">
+        <label for="tempo">tempo</label>
+        <input id="tempo" type="range" min="50" max="160" value="72" />
+        <output id="tempoOut">72</output>
+      </div>
+    </div>
+  </header>
+
+  <main class="stage">
+    <section class="score-pane">
+      <div class="paper">
+        <div id="osmd" class="osmd"></div>
+        <div id="scoreEmpty" class="empty">
+          <p class="empty-title">A blank stand, waiting.</p>
+          <p class="empty-sub">Load the demo or drop in a MusicXML lead sheet to begin.</p>
+        </div>
+        <div id="scoreLoading" class="loading" hidden>
+          <span class="spinner"></span> arranging…
+        </div>
+      </div>
+
+      <div class="analysis-strip" id="analysisStrip" hidden>
+        <div class="chip"><span class="chip-k">Key</span><span class="chip-v" id="aKey">—</span></div>
+        <div class="chip"><span class="chip-k">Tempo</span><span class="chip-v" id="aTempo">—</span></div>
+        <div class="chip"><span class="chip-k">Time</span><span class="chip-v" id="aTime">—</span></div>
+        <div class="chip"><span class="chip-k">Bars</span><span class="chip-v" id="aBars">—</span></div>
+        <div class="chip chips"><span class="chip-k">Changes</span><span class="chip-v" id="aChords">—</span></div>
+      </div>
+    </section>
+
+    <aside class="teacher-pane">
+      <div class="teacher-head">
+        <h2>The teacher</h2>
+        <span id="decCount" class="dec-count"></span>
+      </div>
+      <div id="teacherList" class="teacher-list">
+        <p class="teacher-hint">Pick a level below and Bluesify will explain every choice it makes — voicings, guide tones, and what to listen for.</p>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="console">
+    <div class="row">
+      <div class="levels" id="levels" role="tablist" aria-label="Difficulty level"></div>
+    </div>
+    <div class="row controls">
+      <label class="select">
+        <span>Style</span>
+        <select id="style"></select>
+      </label>
+      <label class="select">
+        <span>Mode</span>
+        <select id="mode" disabled><option value="solo">Solo piano</option></select>
+      </label>
+      <div class="spacer"></div>
+      <button id="demoBtn" class="ghost">Load demo</button>
+      <label class="upload">
+        <input id="fileInput" type="file" accept=".musicxml,.xml,.mxl,.mid,.midi" hidden />
+        <span>Upload lead sheet</span>
+      </label>
+    </div>
+    <p id="toast" class="toast" hidden></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/opensheetmusicdisplay@1.8.7/build/opensheetmusicdisplay.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tone@14.8.49/build/Tone.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tonejs/midi@2.0.28/build/Midi.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

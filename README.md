@@ -25,13 +25,29 @@ uv sync
 # Analyze harmony and teaching notes
 uv run bluesify analyze path/to/leadsheet.musicxml
 
-# Arrange (Phase 1 target)
+# Arrange
 uv run bluesify arrange path/to/leadsheet.musicxml \
     --mode solo \
     --style jazz-ballad \
-    --level 3 \
+    --level 5 \
     --out ./output/
 ```
+
+## Web UI
+
+An iPad-first, no-build web app (Phase 3). FastAPI wraps the engine; the
+frontend renders the arranged score with OpenSheetMusicDisplay and plays it
+back through a warm Tone.js piano voice. Teacher annotations, tension
+analysis, and a level/style picker live in a single jazz-club-styled page.
+
+```bash
+uv sync --extra web
+uv run bluesify serve            # http://127.0.0.1:8000
+uv run bluesify serve --reload   # dev auto-reload
+```
+
+Open the page, tap **Load demo** (or drop in your own MusicXML), pick a level,
+and press play. Levels 1-5 are playable in the solo jazz-ballad engine.
 
 ## Development
 
@@ -51,6 +67,7 @@ src/bluesify/
   arranger/   Arrangement engines
   core/       Score I/O and shared models
   voicings/   Piano voicing strategies
+  web/        FastAPI backend + iPad-first static frontend
 tests/        Pytest suite with copyright-safe generated fixtures
 examples/     Generated sample outputs
 ```
