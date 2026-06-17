@@ -3,6 +3,14 @@
 This case study documents a harmony-only Bluesify experiment around Loveholic's
 `Geudaeman Itdamyeon` and Julian Lerner's English cover `Even If`.
 
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=orbICj89nJk">
+    <img src="https://img.youtube.com/vi/orbICj89nJk/maxresdefault.jpg"
+         alt="Bluesify demo video"
+         width="720">
+  </a>
+</p>
+
 It intentionally omits melody, lyrics, and any third-party lead-sheet
 transcription. The goal is to capture arrangement reasoning that can be reused
 for Bluesify's jazz-ballad and reharmonization workflows.
