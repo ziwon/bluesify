@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Harmony map for Geudaeman Itdamyeon / Even If</title>
+  <desc id="desc">A harmony-only diagram showing the Eb major form, modal interchange, secondary dominants, and chromatic passing dominants.</desc>
+  <defs>
+    <style>
+      text {
+        font-family: Inter, Arial, sans-serif;
+        fill: #1f2933;
+      }
+      .title {
+        font-size: 34px;
+        font-weight: 700;
+      }
+      .subtitle {
+        font-size: 17px;
+        fill: #52606d;
+      }
+      .section {
+        font-size: 18px;
+        font-weight: 700;
+        fill: #102a43;
+      }
+      .measure {
+        font-size: 13px;
+        fill: #627d98;
+      }
+      .chord {
+        font-size: 22px;
+        font-weight: 700;
+      }
+      .roman {
+        font-size: 13px;
+        fill: #486581;
+      }
+      .note {
+        font-size: 15px;
+        fill: #334e68;
+      }
+      .card {
+        fill: #ffffff;
+        stroke: #d9e2ec;
+        stroke-width: 2;
+        rx: 14;
+      }
+      .tonic {
+        fill: #e0f2fe;
+        stroke: #38bdf8;
+      }
+      .borrowed {
+        fill: #fee2e2;
+        stroke: #ef4444;
+      }
+      .secondary {
+        fill: #fef3c7;
+        stroke: #f59e0b;
+      }
+      .passing {
+        fill: #ede9fe;
+        stroke: #8b5cf6;
+      }
+      .diatonic {
+        fill: #ecfdf5;
+        stroke: #10b981;
+      }
+      .line {
+        stroke: #9fb3c8;
+        stroke-width: 2.5;
+        fill: none;
+        marker-end: url(#arrow);
+      }
+      .emphasis {
+        stroke: #ef4444;
+        stroke-width: 3.5;
+        fill: none;
+        marker-end: url(#arrow-red);
+      }
+    </style>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#9fb3c8" />
+    </marker>
+    <marker id="arrow-red" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#ef4444" />
+    </marker>
+  </defs>
+
+  <rect width="1280" height="720" fill="#f8fafc" />
+  <text class="title" x="52" y="62">그대만 있다면 / Even If - Harmony Map</text>
+  <text class="subtitle" x="52" y="91">Eb major harmony-only reading for Bluesify jazz-ballad arrangement work</text>
+
+  <g transform="translate(52 126)">
+    <rect class="card" width="1176" height="118" />
+    <text class="section" x="24" y="35">Form</text>
+    <text class="measure" x="24" y="61">Intro m1-4</text>
+    <text class="chord" x="24" y="91">Eb</text>
+    <text class="roman" x="24" y="111">I pedal</text>
+
+    <text class="measure" x="172" y="61">Verse m5-12</text>
+    <text class="chord" x="172" y="91">Eb - Gm - D - Cm - Bb - Ab - Bb - Eb</text>
+    <text class="roman" x="172" y="111">I - iii - chromatic D - vi - V - IV - V - I</text>
+
+    <text class="measure" x="660" y="61">Pre-chorus m13-19</text>
+    <text class="chord" x="660" y="91">Fm - Gm - Ab - Abm - Eb - Gm - C</text>
+    <text class="roman" x="660" y="111">ii - iii - IV - iv - I - iii - V/ii</text>
+  </g>
+
+  <g transform="translate(52 272)">
+    <rect class="card" width="1176" height="118" />
+    <text class="measure" x="24" y="40">Chorus m20-26</text>
+    <text class="chord" x="24" y="70">Fm - Ab - Abm - Eb - Cm - Fm - Bbsus4 - Bb7 - Eb</text>
+    <text class="roman" x="24" y="94">ii - IV - iv - I - vi - ii - V7sus4 - V7 - I</text>
+
+    <text class="measure" x="760" y="40">Outro m27 onward</text>
+    <text class="chord" x="760" y="70">Ab - Cm7 - G - Ab - Bb7 - Eb</text>
+    <text class="roman" x="760" y="94">IV - vi7 - passing G - IV - V7 - I</text>
+  </g>
+
+  <g transform="translate(52 430)">
+    <rect class="card borrowed" width="350" height="190" />
+    <text class="section" x="24" y="38">1. Modal Interchange</text>
+    <text class="chord" x="24" y="78">Ab -> Abm</text>
+    <text class="roman" x="24" y="103">IV -> iv borrowed from Eb minor</text>
+    <text class="note" x="24" y="137">C falls to Cb/B by semitone.</text>
+    <text class="note" x="24" y="161">This is the emotional signature.</text>
+  </g>
+
+  <g transform="translate(465 430)">
+    <rect class="card secondary" width="350" height="190" />
+    <text class="section" x="24" y="38">2. Secondary Dominants</text>
+    <text class="chord" x="24" y="78">C -> Fm</text>
+    <text class="roman" x="24" y="103">V/ii -> ii</text>
+    <text class="chord" x="24" y="139">Bbsus4 -> Bb7 -> Eb</text>
+    <text class="roman" x="24" y="164">V7sus4 -> V7 -> I</text>
+  </g>
+
+  <g transform="translate(878 430)">
+    <rect class="card passing" width="350" height="190" />
+    <text class="section" x="24" y="38">3. Chromatic Passing Color</text>
+    <text class="chord" x="24" y="78">Gm - D - Cm</text>
+    <text class="roman" x="24" y="103">iii - passing major - vi</text>
+    <text class="chord" x="24" y="139">Cm7 - G - Ab</text>
+    <text class="roman" x="24" y="164">vi7 - passing major - IV</text>
+  </g>
+
+  <path class="emphasis" d="M215 402 C310 395 340 410 402 458" />
+  <path class="line" d="M640 402 C640 414 640 420 640 430" />
+  <path class="line" d="M1038 402 C1038 414 1038 420 1038 430" />
+
+  <g transform="translate(52 660)">
+    <rect class="tonic" x="0" y="-20" width="120" height="34" rx="8" />
+    <text class="roman" x="14" y="2">tonic area</text>
+    <rect class="borrowed" x="146" y="-20" width="150" height="34" rx="8" />
+    <text class="roman" x="160" y="2">borrowed minor</text>
+    <rect class="secondary" x="322" y="-20" width="170" height="34" rx="8" />
+    <text class="roman" x="338" y="2">secondary dominant</text>
+    <rect class="passing" x="518" y="-20" width="168" height="34" rx="8" />
+    <text class="roman" x="534" y="2">chromatic passing</text>
+  </g>
+</svg>

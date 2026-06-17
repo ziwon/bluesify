@@ -1,0 +1,1227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE score-partwise  PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <work>
+    <work-title>Geudaeman Itdamyeon - harmony chart in C</work-title>
+  </work>
+  <movement-title>Transposed down minor third from Eb harmony chart</movement-title>
+  <identification>
+    <creator type="composer">강현민 (원곡 일기예보) / 코드차트: 분석용</creator>
+    <encoding>
+      <encoding-date>2026-06-18</encoding-date>
+      <software>music21 v.10.1.0</software>
+      <software>chord-chart generator</software>
+      <supports element="beam" type="yes" />
+      <supports element="stem" type="yes" />
+      <supports element="accidental" type="yes" />
+    </encoding>
+  </identification>
+  <defaults>
+    <scaling>
+      <millimeters>7</millimeters>
+      <tenths>40</tenths>
+    </scaling>
+  </defaults>
+  <part-list>
+    <score-part id="P1">
+      <part-name>Chord Chart</part-name>
+    </score-part>
+  </part-list>
+  <!--=========================== Part 1 ===========================-->
+  <part id="P1">
+    <!--========================= Measure 1 ==========================-->
+    <measure implicit="no" number="1">
+      <attributes>
+        <divisions>10080</divisions>
+        <key>
+          <fifths>0</fifths>
+          <mode>major</mode>
+        </key>
+        <time>
+          <beats>4</beats>
+          <beat-type>4</beat-type>
+        </time>
+        <clef>
+          <sign>G</sign>
+          <line>2</line>
+        </clef>
+      </attributes>
+      <direction placement="below">
+        <direction-type>
+          <words font-style="italic">Intro: I</words>
+        </direction-type>
+      </direction>
+      <direction placement="above">
+        <direction-type>
+          <metronome parentheses="no">
+            <beat-unit>quarter</beat-unit>
+            <per-minute>72</per-minute>
+          </metronome>
+        </direction-type>
+        <sound tempo="72" />
+      </direction>
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 2 ==========================-->
+    <measure implicit="no" number="2">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 3 ==========================-->
+    <measure implicit="no" number="3">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 4 ==========================-->
+    <measure implicit="no" number="4">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 5 ==========================-->
+    <measure implicit="no" number="5">
+      <direction placement="below">
+        <direction-type>
+          <words font-style="italic">Verse: I – iii – [V/iii] – vi – V – IV – V – I</words>
+        </direction-type>
+      </direction>
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+      <note print-object="no" print-spacing="yes">
+        <rest />
+        <duration>20160</duration>
+        <type>half</type>
+      </note>
+      <harmony>
+        <root>
+          <root-step>B</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 6 ==========================-->
+    <measure implicit="no" number="6">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>G</root-step>
+          <root-alter>0</root-alter>
+        </root>
+        <kind>major</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 7 ==========================-->
+    <measure implicit="no" number="7">
+      <harmony>
+        <root>
+          <root-step>F</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>G</root-step>
+          <root-alter>0</root-alter>
+        </root>
+        <kind>major</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 8 ==========================-->
+    <measure implicit="no" number="8">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 9 ==========================-->
+    <measure implicit="no" number="9">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+      <note print-object="no" print-spacing="yes">
+        <rest />
+        <duration>20160</duration>
+        <type>half</type>
+      </note>
+      <harmony>
+        <root>
+          <root-step>B</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 10 =========================-->
+    <measure implicit="no" number="10">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>G</root-step>
+          <root-alter>0</root-alter>
+        </root>
+        <kind>major</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 11 =========================-->
+    <measure implicit="no" number="11">
+      <harmony>
+        <root>
+          <root-step>F</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>G</root-step>
+          <root-alter>0</root-alter>
+        </root>
+        <kind>major</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 12 =========================-->
+    <measure implicit="no" number="12">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 13 =========================-->
+    <measure implicit="no" number="13">
+      <direction placement="below">
+        <direction-type>
+          <words font-style="italic">Pre-chorus: ii – iii – IV – iv(borrowed) – I – iii – V/ii</words>
+        </direction-type>
+      </direction>
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 14 =========================-->
+    <measure implicit="no" number="14">
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 15 =========================-->
+    <measure implicit="no" number="15">
+      <harmony>
+        <root>
+          <root-step>F</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 16 =========================-->
+    <measure implicit="no" number="16">
+      <harmony>
+        <root>
+          <root-step>F</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 17 =========================-->
+    <measure implicit="no" number="17">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 18 =========================-->
+    <measure implicit="no" number="18">
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 19 =========================-->
+    <measure implicit="no" number="19">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 20 =========================-->
+    <measure implicit="no" number="20">
+      <direction placement="below">
+        <direction-type>
+          <words font-style="italic">Chorus: ii – IV–iv – I–vi – ii – V7sus4–V7 – I</words>
+        </direction-type>
+      </direction>
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 21 =========================-->
+    <measure implicit="no" number="21">
+      <harmony>
+        <root>
+          <root-step>F</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>F</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 22 =========================-->
+    <measure implicit="no" number="22">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+          <root-alter>0</root-alter>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 23 =========================-->
+    <measure implicit="no" number="23">
+      <harmony>
+        <root>
+          <root-step>D</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 24 =========================-->
+    <measure implicit="no" number="24">
+      <harmony>
+        <root>
+          <root-step>G</root-step>
+          <root-alter>0</root-alter>
+        </root>
+        <kind text="sus4">suspended-fourth</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>G</root-step>
+          <root-alter>0</root-alter>
+        </root>
+        <kind text="7">dominant</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 25 =========================-->
+    <measure implicit="no" number="25">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+      <note print-object="no" print-spacing="yes">
+        <rest />
+        <duration>20160</duration>
+        <type>half</type>
+      </note>
+      <harmony>
+        <root>
+          <root-step>B</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 26 =========================-->
+    <measure implicit="no" number="26">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>G</root-step>
+          <root-alter>0</root-alter>
+        </root>
+        <kind>major</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 27 =========================-->
+    <measure implicit="no" number="27">
+      <direction placement="below">
+        <direction-type>
+          <words font-style="italic">Outro: IV – Cm7–[G] – IV – V7 – I ...</words>
+        </direction-type>
+      </direction>
+      <harmony>
+        <root>
+          <root-step>F</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind text="m7">minor-seventh</kind>
+      </harmony>
+      <note print-object="no" print-spacing="yes">
+        <rest />
+        <duration>20160</duration>
+        <type>half</type>
+      </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 28 =========================-->
+    <measure implicit="no" number="28">
+      <harmony>
+        <root>
+          <root-step>F</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>G</root-step>
+          <root-alter>0</root-alter>
+        </root>
+        <kind text="7">dominant</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 29 =========================-->
+    <measure implicit="no" number="29">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+      <note print-object="no" print-spacing="yes">
+        <rest />
+        <duration>20160</duration>
+        <type>half</type>
+      </note>
+      <harmony>
+        <root>
+          <root-step>B</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 30 =========================-->
+    <measure implicit="no" number="30">
+      <harmony>
+        <root>
+          <root-step>A</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>G</root-step>
+          <root-alter>0</root-alter>
+        </root>
+        <kind>major</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 31 =========================-->
+    <measure implicit="no" number="31">
+      <harmony>
+        <root>
+          <root-step>F</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>G</root-step>
+          <root-alter>0</root-alter>
+        </root>
+        <kind text="7">dominant</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 32 =========================-->
+    <measure implicit="no" number="32">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 33 =========================-->
+    <measure implicit="no" number="33">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+    <!--========================= Measure 34 =========================-->
+    <measure implicit="no" number="34">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>20160</duration>
+        <type>half</type>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+      <harmony>
+        <root>
+          <root-step>E</root-step>
+        </root>
+        <kind text="m">minor</kind>
+      </harmony>
+    </measure>
+    <!--========================= Measure 35 =========================-->
+    <measure implicit="no" number="35">
+      <harmony>
+        <root>
+          <root-step>C</root-step>
+        </root>
+        <kind>major</kind>
+      </harmony>
+      <note>
+        <pitch>
+          <step>G</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>40320</duration>
+        <type>whole</type>
+        <accidental>sharp</accidental>
+        <stem>none</stem>
+        <notehead parentheses="no">slash</notehead>
+      </note>
+    </measure>
+  </part>
+</score-partwise>

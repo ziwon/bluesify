@@ -25,6 +25,7 @@ examples/**/*.musicxml
 examples/**/*.mxl
 !tests/fixtures/.gitkeep
 !tests/fixtures/canonical_leadsheet.musicxml
+!examples/representative/*.musicxml
 
 # Generated outputs
 examples/**/output/
