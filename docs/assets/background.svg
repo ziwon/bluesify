@@ -1,0 +1,211 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Bluesify retro jazz theory background</title>
+  <desc id="desc">A retro jazz piano background with sunset gold, piano keys, and floating chord symbols.</desc>
+  <defs>
+    <filter id="paper" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="17" result="noise" />
+      <feColorMatrix in="noise" type="saturate" values="0" result="mono" />
+      <feComponentTransfer in="mono">
+        <feFuncA type="table" tableValues="0 0.13" />
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" mode="multiply" />
+    </filter>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#91c6df" />
+      <stop offset="1" stop-color="#b7d9e8" />
+    </linearGradient>
+    <style>
+      .serif {
+        font-family: Georgia, "Times New Roman", serif;
+        fill: #07165f;
+      }
+      .small {
+        font-size: 21px;
+        font-style: italic;
+      }
+      .chord {
+        font-size: 46px;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+      .hint {
+        fill: none;
+        stroke: #07165f;
+        stroke-linecap: round;
+        stroke-width: 2.2;
+        opacity: 0.34;
+      }
+      .staff {
+        stroke: #07165f;
+        stroke-width: 2;
+        opacity: 0.24;
+      }
+      .note {
+        fill: #07165f;
+        opacity: 0.3;
+      }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#sky)" />
+  <g filter="url(#paper)">
+    <rect width="1600" height="900" fill="transparent" />
+  </g>
+
+  <path class="hint" d="M70 365 C210 250 315 470 455 330 S720 285 835 405" />
+  <path class="hint" d="M1025 90 C1115 175 1260 140 1334 245 S1452 324 1545 250" />
+  <path class="hint" d="M118 88 v255" />
+  <path class="hint" d="M148 74 v215" />
+  <path class="hint" d="M178 94 v237" />
+  <path class="hint" d="M208 70 v198" />
+  <path class="hint" d="M238 112 v190" />
+  <circle cx="142" cy="322" r="13" fill="#fff7d7" />
+  <path d="M142 260 l13 40 42 2 -35 23 11 41 -31 -26 -34 24 14 -40 -34 -25 42 1z" fill="#fff2c1" opacity="0.92" />
+  <path d="M1316 715 c62 -64 152 -90 252 -72" fill="none" stroke="#07165f" stroke-width="2" opacity="0.28" />
+
+  <g transform="translate(0 545)">
+    <rect width="1600" height="150" fill="#f4c767" />
+    <rect y="150" width="1600" height="22" fill="#9ed2e5" />
+    <rect y="172" width="1600" height="16" fill="#06135c" opacity="0.96" />
+    <g fill="#fff8df" opacity="0.94">
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="-18 0; 18 0; -18 0"
+        dur="28s"
+        repeatCount="indefinite"
+      />
+      <path d="M82 84 c33 -34 72 -31 101 0 27 -18 61 -13 83 8 28 27 8 59 -37 60H95c-46-2-54-38-13-68z" />
+      <path d="M406 47 c32 -31 69 -27 91 -2 28 -16 62 -7 79 17 17 25 0 50 -37 52H423c-39-1-50-38-17-67z" />
+      <path d="M748 76 c41 -35 92 -29 121 6 32 -24 82 -8 94 24 12 29 -10 52 -55 52H762c-56-2-62-46-14-82z" />
+      <path d="M1093 55 c29 -24 65 -21 87 6 26 -16 64 -9 82 17 18 27-1 53-38 54h-118c-42-2-52-44-13-77z" />
+      <path d="M1370 87 c31 -27 70 -24 91 4 26 -17 62 -11 81 12 18 23 4 49 -29 50h-131c-39-2-48-36-12-66z" />
+    </g>
+  </g>
+
+  <g class="serif" opacity="0.96">
+    <g transform="translate(492 94) rotate(-3)">
+      <text class="small" x="26" y="20">bright colors</text>
+      <text class="chord" x="0" y="72">Cmaj7</text>
+      <line class="staff" x1="0" y1="92" x2="184" y2="92" />
+      <line class="staff" x1="0" y1="111" x2="184" y2="111" />
+      <line class="staff" x1="0" y1="130" x2="184" y2="130" />
+      <circle class="note" cx="76" cy="111" r="9" />
+      <circle class="note" cx="101" cy="92" r="9" />
+      <circle class="note" cx="128" cy="130" r="9" />
+      <circle class="note" cx="151" cy="111" r="9" />
+    </g>
+    <g transform="translate(820 112) rotate(3)">
+      <text class="small" x="28" y="20">minor color</text>
+      <text class="chord" x="0" y="72">Cm7</text>
+      <line class="staff" x1="0" y1="92" x2="166" y2="92" />
+      <line class="staff" x1="0" y1="111" x2="166" y2="111" />
+      <line class="staff" x1="0" y1="130" x2="166" y2="130" />
+      <circle class="note" cx="68" cy="130" r="9" />
+      <circle class="note" cx="94" cy="111" r="9" />
+      <circle class="note" cx="120" cy="92" r="9" />
+      <circle class="note" cx="146" cy="111" r="9" />
+    </g>
+    <g transform="translate(1105 96) rotate(-4)">
+      <text class="small" x="12" y="20">pull</text>
+      <text class="chord" x="0" y="72">C7</text>
+      <line class="staff" x1="-2" y1="92" x2="130" y2="92" />
+      <line class="staff" x1="-2" y1="111" x2="130" y2="111" />
+      <line class="staff" x1="-2" y1="130" x2="130" y2="130" />
+      <circle class="note" cx="56" cy="92" r="9" />
+      <circle class="note" cx="82" cy="130" r="9" />
+      <circle class="note" cx="106" cy="111" r="9" />
+    </g>
+    <g transform="translate(1274 168) rotate(5)">
+      <text class="small" x="10" y="20">half-dim</text>
+      <text class="chord" x="0" y="72">Cø7</text>
+      <text class="small" x="86" y="72">Cm7(b5)</text>
+    </g>
+    <g transform="translate(252 185) rotate(-5)">
+      <text class="small" x="10" y="20">diminished</text>
+      <text class="chord" x="0" y="72">C°7</text>
+    </g>
+    <g transform="translate(645 260) rotate(4)">
+      <text class="small" x="18" y="20">minor-major</text>
+      <text class="chord" x="0" y="72">CminΔ</text>
+    </g>
+    <g transform="translate(932 270) rotate(-2)">
+      <text class="small" x="14" y="20">sixth sound</text>
+      <text class="chord" x="0" y="72">C6</text>
+    </g>
+    <g transform="translate(1190 330) rotate(6)">
+      <text class="small" x="18" y="20">minor sixth</text>
+      <text class="chord" x="0" y="72">Cm6</text>
+    </g>
+    <g transform="translate(350 350) rotate(5)">
+      <text class="small" x="18" y="20">altered dominant</text>
+      <text class="chord" x="0" y="72">C7(#5)</text>
+    </g>
+    <g transform="translate(700 398) rotate(-4)">
+      <text class="small" x="20" y="20">upper color</text>
+      <text class="chord" x="0" y="72">C13</text>
+    </g>
+    <g transform="translate(1002 428) rotate(3)">
+      <text class="small" x="18" y="20">outside tension</text>
+      <text class="chord" x="0" y="72">C7alt</text>
+      <path d="M164 52 c58 -26 119 -10 155 35" fill="none" stroke="#07165f" stroke-width="3" opacity="0.5" />
+    </g>
+  </g>
+
+  <g transform="translate(0 718)">
+    <rect width="1600" height="182" fill="#07145e" />
+    <rect y="50" width="1600" height="18" fill="#061044" opacity="0.9" />
+    <rect y="68" width="1600" height="114" fill="#ffe6a8" />
+    <g stroke="#07145e" stroke-width="2" opacity="0.42">
+      <line x1="57.14" y1="68" x2="57.14" y2="182" />
+      <line x1="114.29" y1="68" x2="114.29" y2="182" />
+      <line x1="171.43" y1="68" x2="171.43" y2="182" />
+      <line x1="228.57" y1="68" x2="228.57" y2="182" />
+      <line x1="285.71" y1="68" x2="285.71" y2="182" />
+      <line x1="342.86" y1="68" x2="342.86" y2="182" />
+      <line x1="400" y1="68" x2="400" y2="182" />
+      <line x1="457.14" y1="68" x2="457.14" y2="182" />
+      <line x1="514.29" y1="68" x2="514.29" y2="182" />
+      <line x1="571.43" y1="68" x2="571.43" y2="182" />
+      <line x1="628.57" y1="68" x2="628.57" y2="182" />
+      <line x1="685.71" y1="68" x2="685.71" y2="182" />
+      <line x1="742.86" y1="68" x2="742.86" y2="182" />
+      <line x1="800" y1="68" x2="800" y2="182" />
+      <line x1="857.14" y1="68" x2="857.14" y2="182" />
+      <line x1="914.29" y1="68" x2="914.29" y2="182" />
+      <line x1="971.43" y1="68" x2="971.43" y2="182" />
+      <line x1="1028.57" y1="68" x2="1028.57" y2="182" />
+      <line x1="1085.71" y1="68" x2="1085.71" y2="182" />
+      <line x1="1142.86" y1="68" x2="1142.86" y2="182" />
+      <line x1="1200" y1="68" x2="1200" y2="182" />
+      <line x1="1257.14" y1="68" x2="1257.14" y2="182" />
+      <line x1="1314.29" y1="68" x2="1314.29" y2="182" />
+      <line x1="1371.43" y1="68" x2="1371.43" y2="182" />
+      <line x1="1428.57" y1="68" x2="1428.57" y2="182" />
+      <line x1="1485.71" y1="68" x2="1485.71" y2="182" />
+      <line x1="1542.86" y1="68" x2="1542.86" y2="182" />
+    </g>
+    <g fill="#07145e">
+      <rect x="40" y="68" width="34" height="78" rx="2" />
+      <rect x="97" y="68" width="34" height="78" rx="2" />
+      <rect x="211" y="68" width="34" height="78" rx="2" />
+      <rect x="268" y="68" width="34" height="78" rx="2" />
+      <rect x="325" y="68" width="34" height="78" rx="2" />
+      <rect x="440" y="68" width="34" height="78" rx="2" />
+      <rect x="497" y="68" width="34" height="78" rx="2" />
+      <rect x="611" y="68" width="34" height="78" rx="2" />
+      <rect x="668" y="68" width="34" height="78" rx="2" />
+      <rect x="725" y="68" width="34" height="78" rx="2" />
+      <rect x="840" y="68" width="34" height="78" rx="2" />
+      <rect x="897" y="68" width="34" height="78" rx="2" />
+      <rect x="1011" y="68" width="34" height="78" rx="2" />
+      <rect x="1068" y="68" width="34" height="78" rx="2" />
+      <rect x="1125" y="68" width="34" height="78" rx="2" />
+      <rect x="1240" y="68" width="34" height="78" rx="2" />
+      <rect x="1297" y="68" width="34" height="78" rx="2" />
+      <rect x="1411" y="68" width="34" height="78" rx="2" />
+      <rect x="1468" y="68" width="34" height="78" rx="2" />
+      <rect x="1525" y="68" width="34" height="78" rx="2" />
+    </g>
+  </g>
+</svg>

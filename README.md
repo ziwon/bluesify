@@ -9,6 +9,8 @@ Bluesify takes a MusicXML lead sheet, analyzes its harmony, and produces
 progressive solo-piano arrangements with MIDI, MusicXML, and structured
 teacher annotations.
 
+<img src="docs/assets/background.png">
+
 ## Status
 
 Phase 1 is implemented for Mode B: jazz-standard style lead sheets arranged for
