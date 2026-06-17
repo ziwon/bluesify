@@ -17,6 +17,7 @@ Chord symbols are read from any part of the input.
 from __future__ import annotations
 
 import copy
+from typing import cast
 
 from music21 import (
     chord,
@@ -24,6 +25,7 @@ from music21 import (
     duration,
     harmony,
     instrument,
+    interval,
     metadata,
     note,
     pitch,
@@ -39,6 +41,7 @@ from bluesify.core.types import (
     PerformanceMode,
     Style,
 )
+from bluesify.grooves.base import BassEvent
 from bluesify.voicings.base import VoicingStrategy, midi_numbers
 from bluesify.voicings.shell import RootOnly, Shell37
 
@@ -130,6 +133,19 @@ def _root_pitch(chord_symbol: harmony.ChordSymbol, octave: int) -> pitch.Pitch |
     result = pitch.Pitch(root.name)
     result.octave = octave
     return result
+
+
+def _transpose_from_root(
+    chord_symbol: harmony.ChordSymbol,
+    interval_name: str,
+    octave: int,
+) -> pitch.Pitch | None:
+    root = chord_symbol.root()
+    if root is None:
+        return None
+    root_pitch = pitch.Pitch(root.name)
+    root_pitch.octave = octave
+    return cast(pitch.Pitch, interval.Interval(interval_name).transposePitch(root_pitch))
 
 
 def _midi(p: pitch.Pitch) -> int:
@@ -253,6 +269,66 @@ def _walking_bass_pitches(
     if beats > 1:
         result.append(_approach_to_next_root(root, next_chord))
     return result[:beats]
+
+
+def _bass_events_for_style(
+    style: Style,
+    chord_symbol: harmony.ChordSymbol,
+    next_chord: harmony.ChordSymbol | None,
+    measure_duration: float,
+) -> list[BassEvent]:
+    beats = max(1, int(measure_duration))
+    root = _root_pitch(chord_symbol, octave=2)
+    if root is None:
+        return []
+
+    match style:
+        case Style.SLOW_BLUES:
+            fifth = _transpose_from_root(chord_symbol, "P5", 2) or copy.deepcopy(root)
+            return [
+                BassEvent(copy.deepcopy(root), measure_duration / 2),
+                BassEvent(fifth, measure_duration / 2),
+            ]
+        case Style.SHUFFLE_BLUES:
+            fifth = _transpose_from_root(chord_symbol, "P5", 2) or copy.deepcopy(root)
+            sixth = _transpose_from_root(chord_symbol, "M6", 2) or copy.deepcopy(root)
+            pattern = [root, fifth, sixth, fifth]
+            events: list[BassEvent] = []
+            for idx in range(beats * 2):
+                events.append(BassEvent(copy.deepcopy(pattern[idx % len(pattern)]), 0.5))
+            return events
+        case Style.JAZZ_BLUES:
+            flat_seventh = _transpose_from_root(chord_symbol, "m7", 2) or copy.deepcopy(root)
+            walking = _walking_bass_pitches(chord_symbol, next_chord, beats)
+            if len(walking) >= 3:
+                walking[2] = flat_seventh
+            return [BassEvent(p, 1.0) for p in walking]
+        case Style.JAZZ_SWING:
+            walking = _walking_bass_pitches(chord_symbol, next_chord, beats)
+            return [BassEvent(p, 1.0) for p in walking]
+        case Style.JAZZ_BALLAD:
+            walking = _walking_bass_pitches(chord_symbol, next_chord, beats)
+            return [BassEvent(p, 1.0) for p in walking]
+
+
+def _style_rule_name(style: Style, level: Level) -> str:
+    if level not in {Level.L3_WALKING, Level.L4_BLOCK, Level.L5_FULL}:
+        return "walking_bass"
+    return f"{style.value.replace('-', '_')}_bass"
+
+
+def _style_tags(style: Style) -> list[str]:
+    match style:
+        case Style.JAZZ_BALLAD:
+            return ["jazz-ballad"]
+        case Style.JAZZ_SWING:
+            return ["jazz-swing", "walking-four"]
+        case Style.SLOW_BLUES:
+            return ["slow-blues", "root-fifth"]
+        case Style.SHUFFLE_BLUES:
+            return ["shuffle-blues", "eighth-note-shuffle"]
+        case Style.JAZZ_BLUES:
+            return ["jazz-blues", "blues-seventh"]
 
 
 def _append_opening_context(dst: stream.Measure, src: stream.Measure, clef_obj: clef.Clef) -> None:
@@ -464,13 +540,19 @@ def arrange_solo(
             out_measure.append(r)
         else:
             if level in {Level.L3_WALKING, Level.L4_BLOCK, Level.L5_FULL}:
-                beats = max(1, int(measure_duration))
-                voiced_pitches = _walking_bass_pitches(active_chord, next_chord, beats)
-                for bass_pitch in voiced_pitches:
+                bass_events = _bass_events_for_style(
+                    style,
+                    active_chord,
+                    next_chord,
+                    float(measure_duration),
+                )
+                voiced_pitches = [event.pitch for event in bass_events]
+                for event in bass_events:
+                    bass_pitch = event.pitch
                     n = note.Note(bass_pitch)
-                    n.duration = duration.Duration(1.0)
+                    n.duration = duration.Duration(event.duration_quarters)
                     out_measure.append(n)
-                rule_name = "walking_bass"
+                rule_name = _style_rule_name(style, level)
             elif voicing is not None:
                 voiced_pitches = voicing.voice(active_chord)
                 rule_name = voicing.name
@@ -495,6 +577,7 @@ def arrange_solo(
 
             # Log the decision
             rationale, tags, tips = _rationale_for(level, active_chord.figure)
+            tags = [*tags, *_style_tags(style)]
             decisions.append(
                 ArrangementDecision(
                     measure=output_measure_number,
