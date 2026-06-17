@@ -50,6 +50,9 @@ ArrangementDecision log  (rationale + theory_tags + practice_tips)
 Render (MusicXML / PDF / MIDI / annotations.json)
 ```
 
+For the proposed conversion path from general song inputs into lead sheet
+MusicXML, see [Import Pipeline: General Song to Lead Sheet MusicXML](import_pipeline.md).
+
 The **decision log** is the bridge to the future LLM teacher: every
 non-trivial choice the engine makes emits a structured rationale that
 can be templated now and LLM-paraphrased later.
@@ -221,11 +224,12 @@ public CI.
 
 ### Phase 2 — Style Expansion (Solo) (~2 weeks)
 
-- Style enum fully wired: `slow-blues`, `shuffle-blues`, `jazz-blues`,
+- ✅ Style enum fully wired: `slow-blues`, `shuffle-blues`, `jazz-blues`,
   `jazz-swing`, `jazz-ballad`
-- Per-style groove modules: `shuffle`, `swing_comping`, `stride`
-- Rootless voicings (A-form: 3-5-7-9, B-form: 7-9-3-13)
-- Drop2 voicings for RH block work
+- ✅ Per-style solo bass behavior: ballad/swing walking, slow-blues root-fifth,
+  shuffle eighth-note alternation, jazz-blues b7 color
+- ✅ Rootless voicings (A-form: 3-5-7-9, B-form: 7-9-3-13)
+- ✅ Drop2 voicings for RH block work
 - Test on 2-3 more copyright-safe tunes. Verify public-domain status per
   target jurisdiction before committing any source score; avoid assuming
   standards such as Summertime are public domain.
@@ -259,6 +263,13 @@ The hard part. Build incrementally:
 5. `rules/tritone_sub.py`: V7 → bII7
 6. `rules/modal_interchange.py`: borrow from parallel modes
 7. `rules/blues_conversion.py`: all majors → dom7, optional 12-bar reformat
+
+### Phase 5b — Import Pipeline: General Song to Lead Sheet
+
+- `bluesify import chords`: chord text → MusicXML lead sheet
+- `bluesify import musicxml`: full score → simplified lead sheet
+- Later: `bluesify import midi` with chord inference and confidence warnings
+- Future: PDF/image OMR and audio transcription paths
 
 Each rule:
 - Takes a `ChordProgression` and returns a new one + decisions
