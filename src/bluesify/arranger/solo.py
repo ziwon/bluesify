@@ -4,8 +4,11 @@ Takes an input Score with melody + chord symbols and produces a two-staff
 arrangement at a target Level.
 
 Phase 1 scope:
-    Level 1 - LH: root only (half notes), RH: melody unchanged
-    Level 2 - LH: shell 3-7 (whole notes), RH: melody unchanged
+    Level 1 - LH: root only, RH: melody unchanged
+    Level 2 - LH: shell 3-7, RH: melody unchanged
+    Level 3 - LH: simple walking bass, RH: melody unchanged
+    Level 4 - LH: walking bass, RH: melody + block chords
+    Level 5 - LH: walking bass, RH: block chords with tensions
 
 The melody part is assumed to be the top-most part of the input score.
 Chord symbols are read from any part of the input.
@@ -23,10 +26,12 @@ from music21 import (
     instrument,
     metadata,
     note,
+    pitch,
     stream,
 )
 
 from bluesify.analysis.key import analyze
+from bluesify.analysis.tensions import suggest_tension
 from bluesify.core.types import (
     ArrangementDecision,
     ArrangementResult,
@@ -69,6 +74,36 @@ def _rationale_for(level: Level, chord_figure: str) -> tuple[str, list[str], lis
                     "Keep voicings in the C3-C4 range to avoid muddiness.",
                 ],
             )
+        case Level.L3_WALKING:
+            return (
+                f"Walking bass under {chord_figure}. The line starts on the root, "
+                "touches a chord tone, then approaches the next root.",
+                ["walking-bass", "root-motion", "approach-tone"],
+                [
+                    "Keep the quarter notes even and connected.",
+                    "Listen for how beat 4 pulls into the next bar.",
+                ],
+            )
+        case Level.L4_BLOCK:
+            return (
+                f"Walking bass plus right-hand block chords for {chord_figure}. "
+                "The melody stays on top while chord tones fill underneath.",
+                ["walking-bass", "block-chords", "melody-on-top"],
+                [
+                    "Play the melody note slightly louder than the harmony below it.",
+                    "Keep the left hand steady before adding right-hand weight.",
+                ],
+            )
+        case Level.L5_FULL:
+            return (
+                f"Full texture for {chord_figure}: walking bass, melody block chords, "
+                "and available tensions where they fit the chord quality.",
+                ["walking-bass", "block-chords", "tensions"],
+                [
+                    "Treat tensions as color, not extra volume.",
+                    "Practice the bass alone, then add the right-hand voicing.",
+                ],
+            )
         case _:
             return (f"Level {level}", [], [])
 
@@ -88,6 +123,212 @@ def _extract_chord_at(
     return active
 
 
+def _root_pitch(chord_symbol: harmony.ChordSymbol, octave: int) -> pitch.Pitch | None:
+    root = chord_symbol.root()
+    if root is None:
+        return None
+    result = pitch.Pitch(root.name)
+    result.octave = octave
+    return result
+
+
+def _midi(p: pitch.Pitch) -> int:
+    return int(p.midi)
+
+
+def _shift_octave(p: pitch.Pitch, delta: int) -> None:
+    p.octave = (p.octave or 4) + delta
+
+
+def _named_pitch_below(name: str, ceiling: pitch.Pitch, max_distance: int = 18) -> pitch.Pitch | None:
+    candidate = pitch.Pitch(name)
+    candidate.octave = ceiling.octave
+    while _midi(candidate) >= _midi(ceiling):
+        _shift_octave(candidate, -1)
+    if _midi(ceiling) - _midi(candidate) > max_distance:
+        _shift_octave(candidate, 1)
+    if _midi(candidate) >= _midi(ceiling) or _midi(ceiling) - _midi(candidate) > max_distance:
+        return None
+    return candidate
+
+
+def _chord_tone_names(chord_symbol: harmony.ChordSymbol, include_tensions: bool) -> list[str]:
+    names: list[str] = []
+    for candidate in [
+        chord_symbol.third,
+        chord_symbol.seventh,
+        chord_symbol.fifth,
+        chord_symbol.root(),
+    ]:
+        if candidate is not None and candidate.name not in names:
+            names.append(candidate.name)
+
+    if include_tensions:
+        suggestion = suggest_tension(chord_symbol)
+        if suggestion is not None:
+            for tension in suggestion.available_tensions[:2]:
+                tension_name = tension.split("(", maxsplit=1)[0]
+                if tension_name not in names:
+                    names.append(tension_name)
+
+    return names
+
+
+def _block_chord_for_melody(
+    melody_note: note.Note,
+    chord_symbol: harmony.ChordSymbol | None,
+    include_tensions: bool,
+) -> chord.Chord | note.Note:
+    if chord_symbol is None:
+        return copy.deepcopy(melody_note)
+
+    melody_pitch = copy.deepcopy(melody_note.pitch)
+    harmony_pitches: list[pitch.Pitch] = []
+    for tone_name in _chord_tone_names(chord_symbol, include_tensions):
+        candidate = _named_pitch_below(tone_name, melody_pitch)
+        if (
+            candidate is not None
+            and candidate.nameWithOctave != melody_pitch.nameWithOctave
+            and all(_midi(candidate) != _midi(existing) for existing in harmony_pitches)
+        ):
+            harmony_pitches.append(candidate)
+        if len(harmony_pitches) >= 3:
+            break
+
+    if not harmony_pitches:
+        return copy.deepcopy(melody_note)
+
+    voiced = [*sorted(harmony_pitches, key=_midi), melody_pitch]
+    result = chord.Chord(voiced)
+    result.duration = copy.deepcopy(melody_note.duration)
+    return result
+
+
+def _approach_to_next_root(
+    current_root: pitch.Pitch,
+    next_chord: harmony.ChordSymbol | None,
+) -> pitch.Pitch:
+    if next_chord is None:
+        return copy.deepcopy(current_root)
+
+    next_root = _root_pitch(next_chord, current_root.octave or 2)
+    if next_root is None:
+        return copy.deepcopy(current_root)
+    while _midi(next_root) - _midi(current_root) > 6:
+        _shift_octave(next_root, -1)
+    while _midi(current_root) - _midi(next_root) > 6:
+        _shift_octave(next_root, 1)
+
+    approach = pitch.Pitch()
+    approach.midi = _midi(next_root) - 1 if _midi(next_root) >= _midi(current_root) else _midi(next_root) + 1
+    return approach
+
+
+def _walking_bass_pitches(
+    chord_symbol: harmony.ChordSymbol,
+    next_chord: harmony.ChordSymbol | None,
+    beats: int,
+) -> list[pitch.Pitch]:
+    root = _root_pitch(chord_symbol, octave=2)
+    if root is None:
+        return []
+
+    chord_tones = [
+        _root_pitch(chord_symbol, octave=2),
+        chord_symbol.fifth,
+        chord_symbol.third,
+    ]
+    result: list[pitch.Pitch] = []
+    for candidate in chord_tones:
+        if candidate is None:
+            continue
+        p = pitch.Pitch(candidate.name)
+        p.octave = 2
+        result.append(p)
+        if len(result) >= max(beats - 1, 1):
+            break
+
+    while len(result) < max(beats - 1, 1):
+        result.append(copy.deepcopy(root))
+    if beats > 1:
+        result.append(_approach_to_next_root(root, next_chord))
+    return result[:beats]
+
+
+def _append_opening_context(dst: stream.Measure, src: stream.Measure, clef_obj: clef.Clef) -> None:
+    dst.insert(0, clef_obj)
+    for ts in src.getElementsByClass("TimeSignature"):
+        dst.insert(0, copy.deepcopy(ts))
+        break
+    for ks in src.getElementsByClass("KeySignature"):
+        dst.insert(0, copy.deepcopy(ks))
+        break
+
+
+def _append_arrangement_frame_measure(
+    *,
+    rh: stream.Part,
+    lh: stream.Part,
+    src_measure: stream.Measure,
+    measure_number: int,
+    chord_symbol: harmony.ChordSymbol,
+    label: str,
+    include_context: bool,
+    decisions: list[ArrangementDecision],
+    level: Level,
+) -> None:
+    measure_duration = src_measure.duration.quarterLength
+
+    rh_measure = stream.Measure(number=measure_number)
+    lh_measure = stream.Measure(number=measure_number)
+    if include_context:
+        _append_opening_context(rh_measure, src_measure, clef.TrebleClef())
+        _append_opening_context(lh_measure, src_measure, clef.BassClef())
+
+    rh_chord_symbol = copy.deepcopy(chord_symbol)
+    rh_chord_symbol.offset = 0.0
+    rh_measure.insert(0.0, rh_chord_symbol)
+    rh_rest = note.Rest()
+    rh_rest.duration = duration.Duration(measure_duration)
+    rh_measure.append(rh_rest)
+
+    shell = Shell37(target_octave=3).voice(chord_symbol)
+    if shell:
+        lh_chord = chord.Chord(shell)
+        lh_chord.duration = duration.Duration(measure_duration)
+        lh_measure.append(lh_chord)
+        voicing_midi = midi_numbers(shell)
+    else:
+        bass_root = _root_pitch(chord_symbol, octave=2)
+        if bass_root is None:
+            lh_rest = note.Rest()
+            lh_rest.duration = duration.Duration(measure_duration)
+            lh_measure.append(lh_rest)
+            voicing_midi = []
+        else:
+            bass_note = note.Note(bass_root)
+            bass_note.duration = duration.Duration(measure_duration)
+            lh_measure.append(bass_note)
+            voicing_midi = midi_numbers([bass_root])
+
+    rh.append(rh_measure)
+    lh.append(lh_measure)
+    decisions.append(
+        ArrangementDecision(
+            measure=measure_number,
+            beat=1.0,
+            chord_before=chord_symbol.figure,
+            chord_after=chord_symbol.figure,
+            voicing_midi=voicing_midi,
+            rule_applied=f"level5_{label}",
+            rationale=f"Simple {label} frame using {chord_symbol.figure} to set up the tune.",
+            theory_tags=["form", label, "shell"],
+            level=level.value,
+            practice_tips=["Keep this frame quieter than the tune statement."],
+        )
+    )
+
+
 def arrange_solo(
     score: stream.Score,
     level: Level,
@@ -101,7 +342,7 @@ def arrange_solo(
         and result contains analysis + decision log.
     """
     analysis = analyze(score, title=title)
-    voicing = _pick_voicing(level)
+    voicing = _pick_voicing(level) if level in {Level.L1_ROOT_MELODY, Level.L2_SHELL} else None
 
     # Collect all chord symbols in time order, keyed by their absolute offset.
     # IMPORTANT: do not mutate ChordSymbol.offset - that's their offset within
@@ -139,38 +380,81 @@ def arrange_solo(
     decisions: list[ArrangementDecision] = []
 
     src_measures = list(parts_in[0].getElementsByClass(stream.Measure))
+    measure_number_offset = 0
+    if level is Level.L5_FULL and src_measures and chord_symbols:
+        opening_chord = chord_symbols[0]
+        _append_arrangement_frame_measure(
+            rh=rh,
+            lh=lh,
+            src_measure=src_measures[0],
+            measure_number=1,
+            chord_symbol=opening_chord,
+            label="intro",
+            include_context=True,
+            decisions=decisions,
+            level=level,
+        )
+        _append_arrangement_frame_measure(
+            rh=rh,
+            lh=lh,
+            src_measure=src_measures[0],
+            measure_number=2,
+            chord_symbol=opening_chord,
+            label="intro",
+            include_context=False,
+            decisions=decisions,
+            level=level,
+        )
+        measure_number_offset = 2
+
     for m_idx, src_measure in enumerate(src_measures, start=1):
         # --- Build RH measure: copy melody notes/rests only ---
-        rh_measure = stream.Measure(number=m_idx)
-        if m_idx == 1:
-            rh_measure.insert(0, clef.TrebleClef())
-            for ts in src_measure.getElementsByClass("TimeSignature"):
-                rh_measure.insert(0, copy.deepcopy(ts))
-                break
-            for ks in src_measure.getElementsByClass("KeySignature"):
-                rh_measure.insert(0, copy.deepcopy(ks))
-                break
+        output_measure_number = m_idx + measure_number_offset
+        rh_measure = stream.Measure(number=output_measure_number)
+        if m_idx == 1 and measure_number_offset == 0:
+            _append_opening_context(rh_measure, src_measure, clef.TrebleClef())
+
+        measure_start_offset = float(src_measure.getOffsetInHierarchy(score))
+        active_chord = _extract_chord_at(measure_start_offset, chord_symbols, chord_offsets)
+        next_chord = _extract_chord_at(
+            measure_start_offset + float(src_measure.duration.quarterLength),
+            chord_symbols,
+            chord_offsets,
+        )
+
+        if active_chord is not None:
+            rh_chord_symbol = copy.deepcopy(active_chord)
+            rh_chord_symbol.offset = 0.0
+            rh_measure.insert(0.0, rh_chord_symbol)
 
         for elem in src_measure.notesAndRests:
             # Skip chord symbols here - they're not in notesAndRests, but be safe.
             if isinstance(elem, harmony.ChordSymbol):
                 continue
-            rh_measure.insert(elem.offset, copy.deepcopy(elem))
+            if (
+                level in {Level.L4_BLOCK, Level.L5_FULL}
+                and isinstance(elem, note.Note)
+                and not elem.isRest
+            ):
+                note_offset = measure_start_offset + float(elem.offset)
+                note_chord = _extract_chord_at(note_offset, chord_symbols, chord_offsets)
+                rh_measure.insert(
+                    elem.offset,
+                    _block_chord_for_melody(
+                        elem,
+                        note_chord,
+                        include_tensions=level is Level.L5_FULL,
+                    ),
+                )
+            else:
+                rh_measure.insert(elem.offset, copy.deepcopy(elem))
         rh.append(rh_measure)
 
-        # --- Build LH measure: one voicing per measure ---
-        out_measure = stream.Measure(number=m_idx)
-        if m_idx == 1:
-            out_measure.insert(0, clef.BassClef())
-            for ts in src_measure.getElementsByClass("TimeSignature"):
-                out_measure.insert(0, copy.deepcopy(ts))
-                break
-            for ks in src_measure.getElementsByClass("KeySignature"):
-                out_measure.insert(0, copy.deepcopy(ks))
-                break
+        # --- Build LH measure: one voicing or walking line per measure ---
+        out_measure = stream.Measure(number=output_measure_number)
+        if m_idx == 1 and measure_number_offset == 0:
+            _append_opening_context(out_measure, src_measure, clef.BassClef())
 
-        measure_start_offset = float(src_measure.getOffsetInHierarchy(score))
-        active_chord = _extract_chord_at(measure_start_offset, chord_symbols, chord_offsets)
         measure_duration = src_measure.duration.quarterLength
 
         if active_chord is None:
@@ -179,12 +463,26 @@ def arrange_solo(
             r.duration = duration.Duration(measure_duration)
             out_measure.append(r)
         else:
-            voiced_pitches = voicing.voice(active_chord)
+            if level in {Level.L3_WALKING, Level.L4_BLOCK, Level.L5_FULL}:
+                beats = max(1, int(measure_duration))
+                voiced_pitches = _walking_bass_pitches(active_chord, next_chord, beats)
+                for bass_pitch in voiced_pitches:
+                    n = note.Note(bass_pitch)
+                    n.duration = duration.Duration(1.0)
+                    out_measure.append(n)
+                rule_name = "walking_bass"
+            elif voicing is not None:
+                voiced_pitches = voicing.voice(active_chord)
+                rule_name = voicing.name
+            else:
+                voiced_pitches = []
+                rule_name = "unknown"
+
             if not voiced_pitches:
                 r = note.Rest()
                 r.duration = duration.Duration(measure_duration)
                 out_measure.append(r)
-            else:
+            elif level in {Level.L1_ROOT_MELODY, Level.L2_SHELL}:
                 # Render as a chord (or single note) lasting the full measure
                 if len(voiced_pitches) == 1:
                     n = note.Note(voiced_pitches[0])
@@ -195,24 +493,50 @@ def arrange_solo(
                     c.duration = duration.Duration(measure_duration)
                     out_measure.append(c)
 
-                # Log the decision
-                rationale, tags, tips = _rationale_for(level, active_chord.figure)
-                decisions.append(
-                    ArrangementDecision(
-                        measure=m_idx,
-                        beat=1.0,
-                        chord_before=active_chord.figure,
-                        chord_after=active_chord.figure,
-                        voicing_midi=midi_numbers(voiced_pitches),
-                        rule_applied=voicing.name,
-                        rationale=rationale,
-                        theory_tags=tags,
-                        level=level.value,
-                        practice_tips=tips,
-                    )
+            # Log the decision
+            rationale, tags, tips = _rationale_for(level, active_chord.figure)
+            decisions.append(
+                ArrangementDecision(
+                    measure=output_measure_number,
+                    beat=1.0,
+                    chord_before=active_chord.figure,
+                    chord_after=active_chord.figure,
+                    voicing_midi=midi_numbers(voiced_pitches),
+                    rule_applied=rule_name,
+                    rationale=rationale,
+                    theory_tags=tags,
+                    level=level.value,
+                    practice_tips=tips,
                 )
+            )
 
         lh.append(out_measure)
+
+    if level is Level.L5_FULL and src_measures and chord_symbols:
+        outro_chord = chord_symbols[-1]
+        outro_start = len(src_measures) + measure_number_offset + 1
+        _append_arrangement_frame_measure(
+            rh=rh,
+            lh=lh,
+            src_measure=src_measures[-1],
+            measure_number=outro_start,
+            chord_symbol=outro_chord,
+            label="outro",
+            include_context=False,
+            decisions=decisions,
+            level=level,
+        )
+        _append_arrangement_frame_measure(
+            rh=rh,
+            lh=lh,
+            src_measure=src_measures[-1],
+            measure_number=outro_start + 1,
+            chord_symbol=outro_chord,
+            label="outro",
+            include_context=False,
+            decisions=decisions,
+            level=level,
+        )
 
     out.insert(0, rh)
     out.insert(0, lh)
