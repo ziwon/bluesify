@@ -80,7 +80,10 @@
       </label>
       <label class="select">
         <span>Mode</span>
-        <select id="mode" disabled><option value="solo">Solo piano</option></select>
+        <select id="mode" aria-label="Performance mode">
+          <option value="solo">Solo piano</option>
+          <option value="accomp" disabled>Accompaniment (soon)</option>
+        </select>
       </label>
       <div class="spacer"></div>
       <button id="demoBtn" class="ghost">Load demo</button>
