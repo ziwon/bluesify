@@ -131,17 +131,17 @@ examples/     Generated sample outputs
 %%{init: {"theme": "base", "themeVariables": {"background": "#171717", "primaryColor": "#232323", "primaryTextColor": "#f5f5f5", "primaryBorderColor": "#d0d0d0", "lineColor": "#cfcfcf", "fontFamily": "Inter, Arial, sans-serif"}}}%%
 flowchart TD
   A["Lead Sheet Input<br/>MusicXML / demo fixture"]
-  B["Future Import Pipeline<br/>chord text / full score / MIDI"]
-  C["Analysis<br/>key + tempo + time + chord summary"]
-  D["Tension Suggestions<br/>major / minor / dominant / half-dim"]
+  B["Future Import Pipeline<br/>chord text<br/>full score / MIDI"]
+  C["Analysis<br/>key + tempo + time<br/>chord summary"]
+  D["Tension Suggestions<br/>major / minor<br/>dominant / half-dim"]
   E["Solo Arranger<br/>level + style + mode"]
-  F["Voicing Strategy<br/>roots / shells / block / rootless / drop-2"]
-  G["Groove Pattern<br/>ballad / swing / blues / shuffle"]
+  F["Voicing Strategy<br/>roots / shells<br/>block / rootless / drop-2"]
+  G["Groove Pattern<br/>ballad / swing<br/>blues / shuffle"]
   H["Future Reharmonization<br/>Mode A rules"]
-  I["Decision Log<br/>rationale + theory tags + practice tips"]
-  J["Render Outputs<br/>MusicXML + MIDI + annotations"]
+  I["Decision Log<br/>rationale + tags<br/>practice tips"]
+  J["Render Outputs<br/>MusicXML + MIDI<br/>annotations"]
   K["Optional Verovio Render<br/>SVG / PDF when supported"]
-  L["Web UI<br/>OSMD preview + Tone.js playback"]
+  L["Web UI<br/>OSMD preview<br/>Tone.js playback"]
 
   A --> C
   B -. "planned import" .-> C
