@@ -9,3 +9,9 @@ These diagrams are intentionally generic and copyright-safe.
 
 
 ![C Major Harmony Flow Map](c_major_harmony_flow_map.png)
+
+## Chord Tensions
+
+See [Chord Tension Guide](chord_tensions.md).
+
+![Chord tension guide](chord_tensions.svg)

@@ -61,6 +61,27 @@ class ArrangementDecision(BaseModel):
     practice_tips: list[str] = Field(default_factory=list)
 
 
+class TensionSuggestion(BaseModel):
+    """Teaching-oriented tension choices for one chord symbol."""
+
+    chord: str = Field(description="Chord symbol as written in the score")
+    root: str = Field(description="Chord root, e.g. 'C' or 'B-'")
+    quality: str = Field(description="Chord quality/kind detected by music21")
+    available_tensions: list[str] = Field(
+        default_factory=list,
+        description="Stable tensions that can be added without changing chord function",
+    )
+    color_tensions: list[str] = Field(
+        default_factory=list,
+        description="Optional color tones that need style/context awareness",
+    )
+    avoid_tensions: list[str] = Field(
+        default_factory=list,
+        description="Tensions that usually clash with the chord quality",
+    )
+    explanation: str = Field(description="Short teacher explanation for the recommendation")
+
+
 class AnalysisResult(BaseModel):
     """Output of the analysis stage."""
 
@@ -70,6 +91,10 @@ class AnalysisResult(BaseModel):
     time_signature: str = "4/4"
     measure_count: int
     chord_summary: list[str] = Field(default_factory=list, description="Top chords by frequency")
+    tension_summary: list[TensionSuggestion] = Field(
+        default_factory=list,
+        description="Teaching suggestions for supported chord tensions",
+    )
 
 
 class ArrangementResult(BaseModel):

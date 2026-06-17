@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="680" viewBox="0 0 1080 680" role="img" aria-labelledby="title desc">
+  <title id="title">Chord tension guide</title>
+  <desc id="desc">A diagram summarizing available, color, and avoid tensions for major, minor, dominant, and half-diminished chords.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f3ea; }
+      .ink { fill: #17202a; font-family: Inter, Arial, sans-serif; }
+      .muted { fill: #5d6673; font-family: Inter, Arial, sans-serif; }
+      .card { fill: #fffdf8; stroke: #c9c0ad; stroke-width: 2; rx: 8; }
+      .available { fill: #2e7d5b; }
+      .color { fill: #8a5a20; }
+      .avoid { fill: #a43e3e; }
+      .label { fill: #fffdf8; font-family: Inter, Arial, sans-serif; font-weight: 700; }
+      .rule { fill: #26394f; font-family: Inter, Arial, sans-serif; font-weight: 700; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1080" height="680"/>
+  <text class="ink" x="48" y="64" font-size="36" font-weight="700">Chord Tensions</text>
+  <text class="muted" x="48" y="98" font-size="18">Available tones are stable; color tones need context; avoid tones usually obscure the chord quality.</text>
+
+  <rect class="card" x="48" y="136" width="984" height="92"/>
+  <circle class="available" cx="86" cy="172" r="13"/>
+  <text class="ink" x="110" y="179" font-size="20" font-weight="700">Available</text>
+  <text class="muted" x="110" y="206" font-size="16">safe default extensions</text>
+  <circle class="color" cx="400" cy="172" r="13"/>
+  <text class="ink" x="424" y="179" font-size="20" font-weight="700">Color</text>
+  <text class="muted" x="424" y="206" font-size="16">style or function dependent</text>
+  <circle class="avoid" cx="690" cy="172" r="13"/>
+  <text class="ink" x="714" y="179" font-size="20" font-weight="700">Avoid</text>
+  <text class="muted" x="714" y="206" font-size="16">common clashes for the quality</text>
+
+  <rect class="card" x="48" y="264" width="462" height="148"/>
+  <text class="rule" x="78" y="306" font-size="24">Major family</text>
+  <rect class="available" x="78" y="328" width="120" height="32" rx="8"/>
+  <text class="label" x="105" y="350" font-size="16">9, 13</text>
+  <rect class="color" x="214" y="328" width="120" height="32" rx="8"/>
+  <text class="label" x="254" y="350" font-size="16">#11</text>
+  <rect class="avoid" x="350" y="328" width="120" height="32" rx="8"/>
+  <text class="label" x="395" y="350" font-size="16">11</text>
+  <text class="muted" x="78" y="388" font-size="16">Cmaj7: D(9), F#(#11), A(13); avoid F(11)</text>
+
+  <rect class="card" x="570" y="264" width="462" height="148"/>
+  <text class="rule" x="600" y="306" font-size="24">Minor family</text>
+  <rect class="available" x="600" y="328" width="120" height="32" rx="8"/>
+  <text class="label" x="638" y="350" font-size="16">9, 11</text>
+  <rect class="color" x="736" y="328" width="120" height="32" rx="8"/>
+  <text class="label" x="784" y="350" font-size="16">13</text>
+  <rect class="avoid" x="872" y="328" width="120" height="32" rx="8"/>
+  <text class="label" x="912" y="350" font-size="16">b9, b13</text>
+  <text class="muted" x="600" y="388" font-size="16">Cm7: D(9), F(11), A(13); avoid Db/Ab colors</text>
+
+  <rect class="card" x="48" y="452" width="462" height="148"/>
+  <text class="rule" x="78" y="494" font-size="24">Dominant family</text>
+  <rect class="available" x="78" y="516" width="120" height="32" rx="8"/>
+  <text class="label" x="105" y="538" font-size="16">9, 13</text>
+  <rect class="color" x="214" y="516" width="170" height="32" rx="8"/>
+  <text class="label" x="239" y="538" font-size="16">b9, #9, #11, b13</text>
+  <rect class="avoid" x="400" y="516" width="70" height="32" rx="8"/>
+  <text class="label" x="426" y="538" font-size="16">11</text>
+  <text class="muted" x="78" y="576" font-size="16">G7: A(9), E(13), altered colors; avoid C(11)</text>
+
+  <rect class="card" x="570" y="452" width="462" height="148"/>
+  <text class="rule" x="600" y="494" font-size="24">Half-diminished</text>
+  <rect class="available" x="600" y="516" width="120" height="32" rx="8"/>
+  <text class="label" x="638" y="538" font-size="16">11, b13</text>
+  <rect class="color" x="736" y="516" width="120" height="32" rx="8"/>
+  <text class="label" x="784" y="538" font-size="16">9</text>
+  <rect class="avoid" x="872" y="516" width="120" height="32" rx="8"/>
+  <text class="label" x="916" y="538" font-size="16">b9</text>
+  <text class="muted" x="600" y="576" font-size="16">Cm7b5: F(11), Ab(b13), D(9); avoid Db(b9)</text>
+</svg>

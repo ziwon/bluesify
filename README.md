@@ -22,6 +22,9 @@ Phase 1 prototype. Solo piano, jazz ballad style, Autumn Leaves.
 # Setup
 uv sync
 
+# Analyze harmony and teaching notes
+uv run bluesify analyze path/to/leadsheet.musicxml
+
 # Arrange (Phase 1 target)
 uv run bluesify arrange path/to/leadsheet.musicxml \
     --mode solo \
@@ -58,6 +61,7 @@ examples/     Generated sample outputs
 Input (MusicXML / chord text)
     ↓
 Analysis (key, form, chord function)
+  └─ Chord tension suggestions
     ↓
 Arranger (per Level, per Mode)
   ├─ Voicing strategy

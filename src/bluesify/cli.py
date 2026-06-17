@@ -68,6 +68,14 @@ def arrange(
     table.add_row("Time", result.analysis.time_signature)
     table.add_row("Measures", str(result.analysis.measure_count))
     table.add_row("Top chords", ", ".join(result.analysis.chord_summary))
+    if result.analysis.tension_summary:
+        table.add_row(
+            "Tensions",
+            "; ".join(
+                f"{s.chord}: {', '.join(s.available_tensions)}"
+                for s in result.analysis.tension_summary
+            ),
+        )
     console.print(table)
 
     # Write outputs
