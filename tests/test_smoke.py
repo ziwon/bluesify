@@ -11,7 +11,7 @@ from pathlib import Path
 from music21 import harmony, instrument, key, metadata, meter, note, stream, tempo
 
 from bluesify.arranger.solo import arrange_solo
-from bluesify.core.score import save_midi, save_musicxml
+from bluesify.core.score import load_musicxml, save_midi, save_musicxml
 from bluesify.core.types import Level, Style
 
 
@@ -73,7 +73,7 @@ def build_test_leadsheet() -> stream.Score:
     return score
 
 
-def test_level_1_and_2_pipeline(tmp_path: Path) -> None:
+def test_all_solo_levels_pipeline(tmp_path: Path) -> None:
     out_dir = tmp_path / "output"
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -81,7 +81,7 @@ def test_level_1_and_2_pipeline(tmp_path: Path) -> None:
     input_path = save_musicxml(leadsheet, out_dir / "input.musicxml")
     assert input_path.exists()
 
-    for level in [Level.L1_ROOT_MELODY, Level.L2_SHELL]:
+    for level in Level:
         out_score, result = arrange_solo(
             leadsheet,
             level=level,
@@ -91,7 +91,8 @@ def test_level_1_and_2_pipeline(tmp_path: Path) -> None:
 
         assert result.level == level.value
         assert result.analysis.measure_count == 8
-        assert len(result.decisions) == 8
+        expected_decisions = 12 if level is Level.L5_FULL else 8
+        assert len(result.decisions) == expected_decisions
 
         stem = f"test_level{level.value}"
         xml_path = save_musicxml(out_score, out_dir / f"{stem}.musicxml")
@@ -102,3 +103,19 @@ def test_level_1_and_2_pipeline(tmp_path: Path) -> None:
         assert xml_path.exists()
         assert midi_path.exists()
         assert ann_path.exists()
+
+
+def test_canonical_fixture_is_parseable() -> None:
+    fixture = Path(__file__).parent / "fixtures" / "canonical_leadsheet.musicxml"
+
+    score = load_musicxml(fixture)
+    _, result = arrange_solo(
+        score,
+        level=Level.L5_FULL,
+        style=Style.JAZZ_BALLAD,
+        title="Canonical Lead Sheet",
+    )
+
+    assert result.analysis.measure_count == 8
+    assert len(result.decisions) == 12
+    assert result.decisions[-1].level == Level.L5_FULL.value

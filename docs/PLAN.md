@@ -28,7 +28,7 @@ guiding them.
 | **Accompaniment** | Rootless voicing (3-7 or 7-3) | Rootless voicing / line comping | For melody instruments; no bass, no melody |
 
 These are the target product axes. In the current prototype, only Mode B,
-solo piano, jazz-ballad, Levels 1-2 are implemented; other combinations
+solo piano, jazz-ballad, Levels 1-5 are implemented; other combinations
 should fail clearly until their phase lands.
 
 ---
@@ -72,7 +72,8 @@ can be templated now and LLM-paraphrased later.
 | Tests | pytest + semantic assertions + normalized golden files | regressions on rearrangements |
 | Lang for UX | English (chord symbols + rationale) | matches jazz pedagogy literature |
 
-**No frontend in Phase 1.** Next.js + OSMD comes in Phase 3.
+The current frontend is a no-build FastAPI/static UI. A larger Next.js + OSMD
+experience remains a Phase 3 direction if the product needs it.
 
 ---
 
@@ -193,11 +194,11 @@ structured data and re-renders the explanation in a persona's voice.
 
 **Gotchas captured:**
 - music21 flat notation is `-` not `b` (`B-maj7`, not `Bbmaj7`).
-  CLI will need an input normalizer.
+  The input normalizer accepts common jazz spellings before analysis/arranging.
 - Mutating `ChordSymbol.offset` corrupts measure durations.
   Use an external `dict[id(cs), float]` for absolute-offset caching.
 
-### Phase 1 — Solo Mode End-to-End (current sprint, ~2 weeks)
+### ✅ Phase 1 — Solo Mode End-to-End (DONE, current sprint)
 
 **Goal:** All 5 levels working for a copyright-safe lead sheet, solo piano,
 jazz ballad. Use a synthesized/public-domain fixture for committed tests and
@@ -205,13 +206,13 @@ demos; Autumn Leaves may be used only as a private manual test file.
 
 | Day | Task |
 |-----|------|
-| 2 | Create a copyright-safe canonical MusicXML fixture. Optionally test privately with an untracked Autumn Leaves file. |
-| 2 | Add chord-symbol input normalizer (`Bb` → `B-`, `Δ` → `maj7`, etc.) |
-| 3 | **Level 3: walking bass generator.** Quarter-note line: root → approach (chromatic or scalar) → next chord's root. Must handle ii-V and longer durations on one chord. |
-| 4 | **Verovio PDF rendering.** Two-staff score with chord symbols above. Include annotation textbox per system. |
-| 5 | **Level 4: block chords / locked hands.** RH melody doubled with chord tones below, LH walking continues. |
-| 6 | **Level 5: tensions, fills, intro/outro.** 9/13/b9 added to voicings on V7s. Simple 2-bar intro (turnaround) and outro (cadence). |
-| 7 | Semantic tests for all 5 levels, plus normalized golden outputs where stable. README with screenshots from copyright-safe examples. |
+| 2 | ✅ Create a copyright-safe canonical MusicXML fixture. Optionally test privately with an untracked Autumn Leaves file. |
+| 2 | ✅ Add chord-symbol input normalizer (`Bb` → `B-`, `Δ` → `maj7`, etc.) |
+| 3 | ✅ **Level 3: walking bass generator.** Quarter-note line: root → approach (chromatic or scalar) → next chord's root. Must handle ii-V and longer durations on one chord. |
+| 4 | ✅ **Verovio rendering.** Two-staff score with chord symbols above. SVG output is enabled when the `render` extra is installed; PDF is attempted when supported by the installed binding. |
+| 5 | ✅ **Level 4: block chords / locked hands.** RH melody doubled with chord tones below, LH walking continues. |
+| 6 | ✅ **Level 5: tensions, fills, intro/outro.** Tensions added to block voicings, with simple 2-bar intro and outro frames. |
+| 7 | ✅ Semantic tests for all 5 levels. README updated for the playable web/CLI flow. |
 
 **Exit criteria:** A single `bluesify arrange tests/fixtures/canonical_leadsheet.musicxml
 --level N` (N=1..5) produces a clean PDF + MIDI + annotations.json. A private
