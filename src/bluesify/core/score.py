@@ -6,6 +6,8 @@ from pathlib import Path
 
 from music21 import converter, stream
 
+from bluesify.core.chords import normalize_score_chord_symbols
+
 
 def load_musicxml(path: Path | str) -> stream.Score:
     """Load a MusicXML file as a music21 Score.
@@ -23,7 +25,9 @@ def load_musicxml(path: Path | str) -> stream.Score:
         # Some single-part files parse as Part - wrap them.
         score = stream.Score()
         score.append(parsed)
+        normalize_score_chord_symbols(score)
         return score
+    normalize_score_chord_symbols(parsed)
     return parsed
 
 
