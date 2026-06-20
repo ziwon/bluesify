@@ -2,98 +2,132 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="theme-color" content="#0e0b09" />
-  <title>Bluesify · learn it like a jazz player</title>
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#f5f6f8" />
+  <title>Bluesify Practice Bench</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <div class="grain" aria-hidden="true"></div>
-
-  <header class="topbar">
-    <div class="brand">
-      <span class="mark">♪</span>
-      <h1>Bluesify</h1>
-      <span class="tagline">step-by-step jazz piano</span>
-    </div>
-
-    <div class="transport" role="group" aria-label="Playback">
-      <button id="playBtn" class="play" aria-label="Play" disabled>
-        <svg class="ic-play" viewBox="0 0 24 24" width="22" height="22"><path d="M8 5v14l11-7z"/></svg>
-        <svg class="ic-pause" viewBox="0 0 24 24" width="22" height="22"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-      </button>
-      <div class="tempo">
-        <label for="tempo">tempo</label>
-        <input id="tempo" type="range" min="50" max="160" value="72" />
-        <output id="tempoOut">72</output>
-      </div>
-    </div>
-  </header>
-
-  <main class="stage">
-    <section class="score-pane">
-      <div class="paper">
-        <div id="osmd" class="osmd"></div>
-        <div id="scoreEmpty" class="empty">
-          <p class="empty-title">A blank stand, waiting.</p>
-          <p class="empty-sub">Load the demo or drop in a MusicXML lead sheet to begin.</p>
-        </div>
-        <div id="scoreLoading" class="loading" hidden>
-          <span class="spinner"></span> arranging…
+  <div class="app-shell">
+    <header class="workbar">
+      <div class="brand-block" aria-label="Application">
+        <div class="brand-mark" aria-hidden="true">B</div>
+        <div>
+          <h1>Bluesify</h1>
+          <p id="sourceName">No lead sheet loaded</p>
         </div>
       </div>
 
-      <div class="analysis-strip" id="analysisStrip" hidden>
-        <div class="chip"><span class="chip-k">Key</span><span class="chip-v" id="aKey">—</span></div>
-        <div class="chip"><span class="chip-k">Tempo</span><span class="chip-v" id="aTempo">—</span></div>
-        <div class="chip"><span class="chip-k">Time</span><span class="chip-v" id="aTime">—</span></div>
-        <div class="chip"><span class="chip-k">Bars</span><span class="chip-v" id="aBars">—</span></div>
-        <div class="chip chips"><span class="chip-k">Changes</span><span class="chip-v" id="aChords">—</span></div>
+      <div class="session-meta" aria-label="Current arrangement">
+        <span id="currentFocus">Practice bench</span>
+        <span>Solo piano</span>
       </div>
-    </section>
 
-    <aside class="teacher-pane">
-      <div class="teacher-head">
-        <h2>The teacher</h2>
-        <span id="decCount" class="dec-count"></span>
+      <div class="source-actions">
+        <button id="demoBtn" class="secondary-action" type="button">Load demo</button>
+        <label class="primary-action">
+          <input id="fileInput" type="file" accept=".musicxml,.xml,.mxl,.mid,.midi" hidden />
+          <span>Upload</span>
+        </label>
       </div>
-      <div id="teacherList" class="teacher-list">
-        <p class="teacher-hint">Pick a level below and Bluesify will explain every choice it makes — voicings, guide tones, and what to listen for.</p>
-      </div>
-    </aside>
-  </main>
+    </header>
 
-  <footer class="console">
-    <div class="row">
+    <main class="workspace">
+      <section class="score-workbench" aria-label="Score practice surface">
+        <div class="score-toolbar">
+          <div id="analysisStrip" class="analysis-strip" hidden>
+            <div class="metric"><span>Key</span><strong id="aKey">-</strong></div>
+            <div class="metric"><span>Tempo</span><strong id="aTempo">-</strong></div>
+            <div class="metric"><span>Time</span><strong id="aTime">-</strong></div>
+            <div class="metric"><span>Bars</span><strong id="aBars">-</strong></div>
+            <div class="metric metric-wide"><span>Changes</span><strong id="aChords">-</strong></div>
+          </div>
+          <p id="toast" class="toast" hidden></p>
+        </div>
+
+        <div class="score-stage">
+          <nav id="decisionRail" class="decision-rail" aria-label="Arrangement decision markers"></nav>
+          <div class="paper">
+            <div id="osmd" class="osmd"></div>
+            <div id="scoreEmpty" class="empty">
+              <p class="empty-title">Load a lead sheet to start practicing.</p>
+              <p class="empty-sub">Use the demo or upload MusicXML. Bluesify will arrange it, render the score, and explain each choice.</p>
+            </div>
+            <div id="scoreLoading" class="loading" hidden>
+              <div class="skeleton-line wide"></div>
+              <div class="skeleton-staff"></div>
+              <div class="skeleton-staff short"></div>
+              <span>Arranging score...</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="practice-notes" aria-label="Practice notes">
+        <div class="notes-head">
+          <div>
+            <p class="panel-label">Practice notes</p>
+            <h2>What changed here?</h2>
+          </div>
+          <span id="decCount" class="dec-count"></span>
+        </div>
+
+        <div class="note-nav" aria-label="Decision navigation">
+          <button id="prevNote" type="button" class="icon-button" aria-label="Previous note" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18 9 12l6-6"/></svg>
+          </button>
+          <button id="nextNote" type="button" class="icon-button" aria-label="Next note" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+
+        <div id="teacherList" class="teacher-list">
+          <p class="teacher-hint">Choose a level and load a lead sheet. Notes will appear measure by measure, with one practical cue at a time.</p>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="practice-strip" aria-label="Practice controls">
+      <section class="score-position" aria-label="Playback position">
+        <span>Sheet position</span>
+        <output id="timelineLabel">No playback</output>
+      </section>
+
+      <div class="transport" role="group" aria-label="Playback">
+        <button id="playBtn" class="play" aria-label="Play" disabled>
+          <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+        </button>
+        <div class="tempo">
+          <label for="tempo">Tempo</label>
+          <input id="tempo" type="range" min="50" max="160" value="72" />
+          <output id="tempoOut">72</output>
+        </div>
+      </div>
+
       <div class="levels" id="levels" role="tablist" aria-label="Difficulty level"></div>
-    </div>
-    <div class="row controls">
-      <label class="select">
-        <span>Style</span>
-        <select id="style"></select>
-      </label>
-      <label class="select">
-        <span>Mode</span>
-        <select id="mode" aria-label="Performance mode">
-          <option value="solo">Solo piano</option>
-          <option value="accomp" disabled>Accompaniment (soon)</option>
-        </select>
-      </label>
-      <div class="spacer"></div>
-      <button id="demoBtn" class="ghost">Load demo</button>
-      <label class="upload">
-        <input id="fileInput" type="file" accept=".musicxml,.xml,.mxl,.mid,.midi" hidden />
-        <span>Upload lead sheet</span>
-      </label>
-    </div>
-    <p id="toast" class="toast" hidden></p>
-  </footer>
+
+      <div class="arrange-controls">
+        <label class="select">
+          <span>Style</span>
+          <select id="style"></select>
+        </label>
+        <label class="select">
+          <span>Mode</span>
+          <select id="mode" aria-label="Performance mode">
+            <option value="solo">Solo piano</option>
+            <option value="accomp" disabled>Accompaniment</option>
+          </select>
+        </label>
+      </div>
+    </footer>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/opensheetmusicdisplay@1.8.7/build/opensheetmusicdisplay.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/tone@14.8.49/build/Tone.js"></script>
