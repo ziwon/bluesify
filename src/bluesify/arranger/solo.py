@@ -311,6 +311,29 @@ def _bass_events_for_style(
             return [BassEvent(p, 1.0) for p in walking]
 
 
+def _bar_duration_quarters(measure: stream.Measure) -> float:
+    """Return the notated bar length, even if imported content overfills the measure."""
+    try:
+        bar_duration = float(measure.barDuration.quarterLength)
+    except Exception:
+        bar_duration = 0.0
+    if bar_duration > 0:
+        return bar_duration
+    return float(measure.duration.quarterLength)
+
+
+def _copy_within_bar(elem: note.GeneralNote, bar_duration: float) -> note.GeneralNote | None:
+    """Copy a note/rest clipped to the active bar duration."""
+    offset = float(elem.offset)
+    if offset >= bar_duration:
+        return None
+    copied = copy.deepcopy(elem)
+    copied.duration = duration.Duration(min(float(elem.quarterLength), bar_duration - offset))
+    if copied.quarterLength <= 0:
+        return None
+    return copied
+
+
 def _style_rule_name(style: Style, level: Level) -> str:
     if level not in {Level.L3_WALKING, Level.L4_BLOCK, Level.L5_FULL}:
         return "walking_bass"
@@ -353,7 +376,7 @@ def _append_arrangement_frame_measure(
     decisions: list[ArrangementDecision],
     level: Level,
 ) -> None:
-    measure_duration = src_measure.duration.quarterLength
+    measure_duration = _bar_duration_quarters(src_measure)
 
     rh_measure = stream.Measure(number=measure_number)
     lh_measure = stream.Measure(number=measure_number)
@@ -492,11 +515,8 @@ def arrange_solo(
 
         measure_start_offset = float(src_measure.getOffsetInHierarchy(score))
         active_chord = _extract_chord_at(measure_start_offset, chord_symbols, chord_offsets)
-        next_chord = _extract_chord_at(
-            measure_start_offset + float(src_measure.duration.quarterLength),
-            chord_symbols,
-            chord_offsets,
-        )
+        measure_duration = _bar_duration_quarters(src_measure)
+        next_chord = _extract_chord_at(measure_start_offset + measure_duration, chord_symbols, chord_offsets)
 
         if active_chord is not None:
             rh_chord_symbol = copy.deepcopy(active_chord)
@@ -507,31 +527,33 @@ def arrange_solo(
             # Skip chord symbols here - they're not in notesAndRests, but be safe.
             if isinstance(elem, harmony.ChordSymbol):
                 continue
+            elem_offset = elem.offset
+            copied_elem = _copy_within_bar(elem, measure_duration)
+            if copied_elem is None:
+                continue
             if (
                 level in {Level.L4_BLOCK, Level.L5_FULL}
-                and isinstance(elem, note.Note)
-                and not elem.isRest
+                and isinstance(copied_elem, note.Note)
+                and not copied_elem.isRest
             ):
-                note_offset = measure_start_offset + float(elem.offset)
+                note_offset = measure_start_offset + float(elem_offset)
                 note_chord = _extract_chord_at(note_offset, chord_symbols, chord_offsets)
                 rh_measure.insert(
-                    elem.offset,
+                    elem_offset,
                     _block_chord_for_melody(
-                        elem,
+                        copied_elem,
                         note_chord,
                         include_tensions=level is Level.L5_FULL,
                     ),
                 )
             else:
-                rh_measure.insert(elem.offset, copy.deepcopy(elem))
+                rh_measure.insert(elem_offset, copied_elem)
         rh.append(rh_measure)
 
         # --- Build LH measure: one voicing or walking line per measure ---
         out_measure = stream.Measure(number=output_measure_number)
         if m_idx == 1 and measure_number_offset == 0:
             _append_opening_context(out_measure, src_measure, clef.BassClef())
-
-        measure_duration = src_measure.duration.quarterLength
 
         if active_chord is None:
             # No chord info - rest the measure
