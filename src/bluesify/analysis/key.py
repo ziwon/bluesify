@@ -12,8 +12,14 @@ from bluesify.core.types import AnalysisResult
 
 def analyze(score: stream.Score, title: str | None = None) -> AnalysisResult:
     """Extract high-level features from a parsed Score."""
-    # Key detection - music21's analyzer uses Krumhansl-Schmuckler by default
+    # Key detection - music21's analyzer uses Krumhansl-Schmuckler by default.
+    # If the score has an explicit key signature, prefer that tonic and keep the
+    # analyzer's mode. Short lead sheets with repeated chromatic melody tones can
+    # otherwise be mislabeled even when the written key signature is clear.
     key_obj = score.analyze("key")
+    key_sigs = list(score.recurse().getElementsByClass("KeySignature"))
+    if key_sigs:
+        key_obj = key_sigs[0].asKey(key_obj.mode)
     key_str = f"{key_obj.tonic.name} {key_obj.mode}"
 
     # Tempo - first MetronomeMark we find, if any
