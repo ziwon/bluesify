@@ -65,6 +65,12 @@ class Shell37(VoicingStrategy):
             if result and seventh_pitch.midi <= result[-1].midi:
                 seventh_pitch.octave += 1
             result.append(seventh_pitch)
+        elif result:
+            root_pitch = pitch.Pitch(root.name)
+            root_pitch.octave = self.target_octave
+            if root_pitch.midi >= result[0].midi:
+                root_pitch.octave -= 1
+            result.insert(0, root_pitch)
         elif not result:
             # Pure power: fall back to root
             root_pitch = pitch.Pitch(root.name)

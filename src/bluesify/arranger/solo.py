@@ -56,7 +56,12 @@ def _pick_voicing(level: Level) -> VoicingStrategy:
             raise NotImplementedError(f"Level {level} not yet implemented")
 
 
-def _rationale_for(level: Level, chord_figure: str) -> tuple[str, list[str], list[str]]:
+def _rationale_for(
+    level: Level,
+    chord_figure: str,
+    *,
+    has_seventh: bool = True,
+) -> tuple[str, list[str], list[str]]:
     """Return (rationale, theory_tags, practice_tips) for a level/chord choice."""
     match level:
         case Level.L1_ROOT_MELODY:
@@ -67,6 +72,17 @@ def _rationale_for(level: Level, chord_figure: str) -> tuple[str, list[str], lis
                 ["Hold each root for the full measure.", "Listen to the bass line shape."],
             )
         case Level.L2_SHELL:
+            if not has_seventh:
+                return (
+                    f"Root-and-3rd shell for {chord_figure}. "
+                    "The root anchors the chord and the 3rd defines major or minor color. "
+                    "Because this chord has no written 7th, Bluesify keeps the voicing simple.",
+                    ["shell", "root-3rd", "triad-color"],
+                    [
+                        "Hear how the 3rd changes the mood compared with root-only.",
+                        "Keep the two-note shape relaxed and quiet.",
+                    ],
+                )
             return (
                 f"Shell voicing (3rd and 7th) of {chord_figure}. "
                 "The 3rd defines major/minor, the 7th defines dominant/maj7/min7. "
@@ -598,7 +614,11 @@ def arrange_solo(
                     out_measure.append(c)
 
             # Log the decision
-            rationale, tags, tips = _rationale_for(level, active_chord.figure)
+            rationale, tags, tips = _rationale_for(
+                level,
+                active_chord.figure,
+                has_seventh=active_chord.seventh is not None,
+            )
             tags = [*tags, *_style_tags(style)]
             decisions.append(
                 ArrangementDecision(

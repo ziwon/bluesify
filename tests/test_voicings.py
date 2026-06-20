@@ -7,6 +7,13 @@ from music21 import harmony
 from bluesify.voicings.base import midi_numbers
 from bluesify.voicings.drop2 import Drop2Voicing
 from bluesify.voicings.rootless import RootlessAForm, RootlessBForm
+from bluesify.voicings.shell import Shell37
+
+
+def test_shell37_plain_triad_uses_root_and_third() -> None:
+    pitches = Shell37().voice(harmony.ChordSymbol("C"))
+
+    assert [p.nameWithOctave for p in pitches] == ["C3", "E3"]
 
 
 def test_rootless_a_form_uses_guide_tones_and_ninth() -> None:
